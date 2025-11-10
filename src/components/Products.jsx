@@ -6,7 +6,7 @@ const Products = () => {
       description: 'La touline traditionnelle en coton tressé. Idéale comme porte-clés ou décoration marine.',
       price: '15€',
       colors: ['Bleu marine', 'Rouge', 'Blanc', 'Naturel'],
-      image: '🌊'
+      image: '/products/touline-classique.jpg'
     },
     {
       id: 2,
@@ -14,7 +14,7 @@ const Products = () => {
       description: 'Touline en corde de qualité supérieure avec finitions soignées et nœud marin authentique.',
       price: '25€',
       colors: ['Bleu roi', 'Bordeaux', 'Vert sapin'],
-      image: '⚓'
+      image: '/products/touline-premium.jpg'
     },
     {
       id: 3,
@@ -22,7 +22,7 @@ const Products = () => {
       description: 'Créez votre touline unique avec vos couleurs et motifs préférés.',
       price: 'Sur devis',
       colors: ['Personnalisable'],
-      image: '🎨'
+      image: '/products/touline-personnalisee.jpg'
     },
     {
       id: 4,
@@ -30,7 +30,7 @@ const Products = () => {
       description: 'Version miniature parfaite pour bijoux de sac ou porte-clés discret.',
       price: '12€',
       colors: ['Toutes couleurs'],
-      image: '🔑'
+      image: '/products/mini-touline.jpg'
     },
     {
       id: 5,
@@ -38,7 +38,7 @@ const Products = () => {
       description: 'Grande touline décorative pour intérieur marin ou décoration murale.',
       price: '40€',
       colors: ['Écru', 'Bleu océan', 'Gris perle'],
-      image: '🏠'
+      image: '/products/touline-decoration.jpg'
     },
     {
       id: 6,
@@ -46,7 +46,7 @@ const Products = () => {
       description: 'Coffret de 3 toulines assorties. Parfait pour un cadeau marin.',
       price: '35€',
       colors: ['Assortiment mer', 'Assortiment terre'],
-      image: '🎁'
+      image: '/products/set-toulines.jpg'
     }
   ];
 
@@ -68,8 +68,16 @@ const Products = () => {
               key={product.id}
               className="bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group"
             >
-              <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-300">
-                {product.image}
+              <div className="h-64 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = '<div class="text-6xl">📸</div><p class="text-sm text-gray-600 mt-2">Image à venir</p>';
+                  }}
+                />
               </div>
 
               <div className="p-6">
