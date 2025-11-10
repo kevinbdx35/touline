@@ -6,7 +6,7 @@ const Products = () => {
       description: 'La touline traditionnelle en coton tressé. Idéale comme porte-clés ou décoration marine.',
       price: '15€',
       colors: ['Bleu marine', 'Rouge', 'Blanc', 'Naturel'],
-      image: '/img/20251110_194201-removebg-preview.png'
+      image: 'img/20251110_194201-removebg-preview.png'
     },
     {
       id: 2,
@@ -14,7 +14,7 @@ const Products = () => {
       description: 'Touline en corde de qualité supérieure avec finitions soignées et nœud marin authentique.',
       price: '25€',
       colors: ['Bleu roi', 'Bordeaux', 'Vert sapin'],
-      image: '/img/20251110_194301-removebg-preview.png'
+      image: 'img/20251110_194301-removebg-preview.png'
     },
     {
       id: 3,
@@ -22,7 +22,7 @@ const Products = () => {
       description: 'Créez votre touline unique avec vos couleurs et motifs préférés.',
       price: 'Sur devis',
       colors: ['Personnalisable'],
-      image: '/img/20251110_194407-removebg-preview.png'
+      image: 'img/20251110_194407-removebg-preview.png'
     },
     {
       id: 4,
@@ -30,7 +30,7 @@ const Products = () => {
       description: 'Version miniature parfaite pour bijoux de sac ou porte-clés discret.',
       price: '12€',
       colors: ['Toutes couleurs'],
-      image: '/img/20251110_194501-removebg-preview.png'
+      image: 'img/20251110_194501-removebg-preview.png'
     },
     {
       id: 5,
@@ -38,7 +38,7 @@ const Products = () => {
       description: 'Grande touline décorative pour intérieur marin ou décoration murale.',
       price: '40€',
       colors: ['Écru', 'Bleu océan', 'Gris perle'],
-      image: '/img/20251110_194133-removebg-preview.png'
+      image: 'img/20251110_194133-removebg-preview.png'
     },
     {
       id: 6,
@@ -46,7 +46,7 @@ const Products = () => {
       description: 'Coffret de 3 toulines assorties. Parfait pour un cadeau marin.',
       price: '35€',
       colors: ['Assortiment mer', 'Assortiment terre'],
-      image: '/img/20251110_194453-removebg-preview.png'
+      image: 'img/20251110_194453-removebg-preview.png'
     }
   ];
 
