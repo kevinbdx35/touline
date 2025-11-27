@@ -1,21 +1,61 @@
 import { useState } from 'react';
 
-const ProductCard = ({ category }) => {
+const ProductCard = ({ category, isNew }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [imageLoading, setImageLoading] = useState(true);
+
+  const handleKeyDown = (e, index) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setActiveImageIndex(index);
+    }
+  };
+
+  const getSizeLabel = () => {
+    if (category.name.includes('Big')) return { icon: '🔷', label: 'Grande taille' };
+    if (category.name.includes('Middle')) return { icon: '🔶', label: 'Taille moyenne' };
+    return { icon: '🔹', label: 'Taille standard' };
+  };
+
+  const sizeInfo = getSizeLabel();
 
   return (
     <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100">
       {/* Main Image */}
       <div className="relative h-96 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
+        {/* Skeleton Loader */}
+        {imageLoading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-3/4 h-3/4 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse rounded-lg"></div>
+          </div>
+        )}
+
         <div className="absolute inset-0 flex items-center justify-center p-6">
           <img
             src={category.images[activeImageIndex]}
-            alt={`${category.name} ${activeImageIndex + 1}`}
-            className="max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500"
+            alt={`${category.name} - Exemple ${activeImageIndex + 1} - Touline artisanale faite main`}
+            loading="lazy"
+            className={`max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
+            onLoad={() => setImageLoading(false)}
             onError={(e) => {
               e.target.style.display = 'none';
+              setImageLoading(false);
             }}
           />
+        </div>
+
+        {/* New Badge */}
+        {isNew && (
+          <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm">
+            ✨ Nouveau
+          </div>
+        )}
+
+        {/* Size Indicator */}
+        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
+          <span className="text-sm font-medium text-gray-700">
+            {sizeInfo.icon} {sizeInfo.label}
+          </span>
         </div>
       </div>
 
@@ -37,7 +77,7 @@ const ProductCard = ({ category }) => {
         </div>
 
         {/* Description */}
-        <p className="text-gray-600 leading-relaxed">
+        <p className="text-gray-600 leading-relaxed h-20 flex items-center">
           {category.description}
         </p>
 
@@ -46,12 +86,23 @@ const ProductCard = ({ category }) => {
           <p className="text-xs font-medium text-gray-500 mb-3 uppercase tracking-wide">
             Exemples de couleurs possibles
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div
+            className="flex flex-wrap gap-2"
+            role="group"
+            aria-label="Galerie d'exemples de couleurs"
+          >
             {category.images.map((image, index) => (
               <button
                 key={index}
-                onClick={() => setActiveImageIndex(index)}
-                className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
+                onClick={() => {
+                  setActiveImageIndex(index);
+                  setImageLoading(true);
+                }}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                aria-label={`Voir l'exemple de couleur ${index + 1} sur ${category.images.length}`}
+                aria-pressed={activeImageIndex === index}
+                tabIndex={0}
+                className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 ${
                   activeImageIndex === index
                     ? 'border-blue-500 ring-2 ring-blue-200 scale-105'
                     : 'border-gray-200 hover:border-blue-300 hover:scale-105'
@@ -59,14 +110,15 @@ const ProductCard = ({ category }) => {
               >
                 <img
                   src={image}
-                  alt={`${category.name} miniature ${index + 1}`}
+                  alt={`${category.name} - Variante couleur ${index + 1}`}
+                  loading="lazy"
                   className="w-full h-full object-contain bg-gradient-to-br from-gray-50 to-white p-2"
                   onError={(e) => {
                     e.target.style.display = 'none';
                   }}
                 />
                 {activeImageIndex === index && (
-                  <div className="absolute inset-0 bg-blue-500/10"></div>
+                  <div className="absolute inset-0 bg-blue-500/10" aria-hidden="true"></div>
                 )}
               </button>
             ))}
@@ -82,63 +134,68 @@ const Products = () => {
     {
       id: 1,
       name: 'Toulines Monocolor',
-      description: 'Toulines élégantes en une seule couleur, parfaites pour un style épuré et raffiné. Disponibles en plusieurs teintes.',
+      description: 'Toulines élégantes en une seule couleur, parfaites pour un style épuré et raffiné.',
       price: '15€',
+      isNew: false,
       images: [
-        'img/monocolor.png',
-        'img/monocolor13.png',
-        'img/monocolor14.png',
-        'img/monocolor15.png',
-        'img/monocolor16.png',
-        'img/monocolor17.png'
+        'img/monocolor.webp',
+        'img/monocolor13.webp',
+        'img/monocolor14.webp',
+        'img/monocolor15.webp',
+        'img/monocolor16.webp',
+        'img/monocolor17.webp'
       ]
     },
     {
       id: 2,
       name: 'Toulines Bicolor',
-      description: 'Toulines bicolores avec un contraste harmonieux de deux couleurs. Large choix de combinaisons disponibles.',
+      description: 'Toulines bicolores avec un contraste harmonieux de deux couleurs.',
       price: '18€',
+      isNew: false,
       images: [
-        'img/bicolor3.png',
-        'img/bicolor5.png',
-        'img/bicolor6.png',
-        'img/bicolor7.png',
-        'img/bicolor10.png',
-        'img/bicolor11.png',
-        'img/bicolor12.png',
-        'img/bicolor19.png'
+        'img/bicolor3.webp',
+        'img/bicolor5.webp',
+        'img/bicolor6.webp',
+        'img/bicolor7.webp',
+        'img/bicolor10.webp',
+        'img/bicolor11.webp',
+        'img/bicolor12.webp',
+        'img/bicolor19.webp'
       ]
     },
     {
       id: 3,
       name: 'Toulines Tricolor',
-      description: 'Toulines tricolores aux couleurs vives et harmonieuses. Un style unique et dynamique pour se démarquer.',
+      description: 'Toulines tricolores aux couleurs vives et harmonieuses pour un style unique.',
       price: '22€',
+      isNew: false,
       images: [
-        'img/tricolor.png',
-        'img/tricolor1.png',
-        'img/tricolor4.png',
-        'img/tricolor5.png',
-        'img/tricolor18.png'
+        'img/tricolor.webp',
+        'img/tricolor1.webp',
+        'img/tricolor4.webp',
+        'img/tricolor5.webp',
+        'img/tricolor18.webp'
       ]
     },
     {
       id: 4,
       name: 'Toulines Middle',
-      description: 'Toulines de taille moyenne, parfaites pour une décoration plus présente tout en restant élégantes.',
+      description: 'Toulines de taille moyenne pour une décoration plus présente et élégante.',
       price: '25€',
+      isNew: true,
       images: [
-        'img/middle1.png'
+        'img/middle1.webp'
       ]
     },
     {
       id: 5,
       name: 'Toulines Big',
-      description: 'Grandes toulines décoratives et fonctionnelles. Parfaites comme butoir de porte ou comme élément de décoration imposant.',
+      description: 'Grandes toulines décoratives, parfaites comme butoir de porte ou décoration.',
       price: '35€',
+      isNew: true,
       images: [
-        'img/big2.png',
-        'img/big3.png'
+        'img/big2.webp',
+        'img/big3.webp'
       ]
     }
   ];
@@ -158,7 +215,7 @@ const Products = () => {
         {/* Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category) => (
-            <ProductCard key={category.id} category={category} />
+            <ProductCard key={category.id} category={category} isNew={category.isNew} />
           ))}
         </div>
       </div>
