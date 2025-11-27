@@ -121,6 +121,25 @@ const Products = () => {
         'img/tricolor5.png',
         'img/tricolor18.png'
       ]
+    },
+    {
+      id: 4,
+      name: 'Toulines Middle',
+      description: 'Toulines de taille moyenne, parfaites pour une décoration plus présente tout en restant élégantes.',
+      price: '25€',
+      images: [
+        'img/middle1.png'
+      ]
+    },
+    {
+      id: 5,
+      name: 'Toulines Big',
+      description: 'Grandes toulines décoratives et fonctionnelles. Parfaites comme butoir de porte ou comme élément de décoration imposant.',
+      price: '35€',
+      images: [
+        'img/big2.png',
+        'img/big3.png'
+      ]
     }
   ];
 
