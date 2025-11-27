@@ -12,7 +12,7 @@ const LegalNotice = () => {
             <p><strong>Numéro SIRET :</strong> [À COMPLÉTER]</p>
             <p><strong>Adresse du siège social :</strong> [À COMPLÉTER - Adresse complète en Bretagne]</p>
             <p><strong>Téléphone :</strong> [À COMPLÉTER]</p>
-            <p><strong>Email :</strong> contact@touline-co.fr</p>
+            <p><strong>Email :</strong> touline_co@proton.me</p>
             <p><strong>Directeur de la publication :</strong> [À COMPLÉTER - Nom du responsable]</p>
           </div>
         </section>
@@ -51,7 +51,7 @@ const LegalNotice = () => {
             vous concernant.
           </p>
           <p className="mb-4">
-            Pour exercer ces droits, vous pouvez nous contacter à l'adresse : contact@touline-co.fr
+            Pour exercer ces droits, vous pouvez nous contacter à l'adresse : touline_co@proton.me
           </p>
           <p>
             Les données collectées via notre formulaire de contact sont utilisées uniquement pour

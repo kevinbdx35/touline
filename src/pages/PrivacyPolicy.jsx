@@ -22,7 +22,7 @@ const PrivacyPolicy = () => {
           <div className="space-y-2">
             <p><strong>Raison sociale :</strong> Touline & Co</p>
             <p><strong>Adresse :</strong> [À COMPLÉTER - Adresse complète]</p>
-            <p><strong>Email :</strong> contact@touline-co.fr</p>
+            <p><strong>Email :</strong> touline_co@proton.me</p>
             <p><strong>Téléphone :</strong> [À COMPLÉTER]</p>
           </div>
         </section>
@@ -126,7 +126,7 @@ const PrivacyPolicy = () => {
             Pour exercer ces droits, vous pouvez nous contacter :
           </p>
           <ul className="list-disc list-inside space-y-2 ml-4 mb-4">
-            <li>Par email : contact@touline-co.fr</li>
+            <li>Par email : touline_co@proton.me</li>
             <li>Par courrier : [À COMPLÉTER - Adresse postale]</li>
           </ul>
           <p>
@@ -193,7 +193,7 @@ const PrivacyPolicy = () => {
           <p className="mb-2">
             Pour toute question concernant cette politique de confidentialité ou vos données personnelles :
           </p>
-          <p className="mb-2"><strong>Email :</strong> contact@touline-co.fr</p>
+          <p className="mb-2"><strong>Email :</strong> touline_co@proton.me</p>
           <p>[À COMPLÉTER - Adresse postale et téléphone]</p>
         </section>
 

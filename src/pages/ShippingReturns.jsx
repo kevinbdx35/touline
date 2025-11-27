@@ -54,7 +54,7 @@ const ShippingReturns = () => {
             <ul className="list-disc list-inside space-y-2 ml-4 mt-2 text-amber-900">
               <li>Refuser le colis OU accepter avec réserves écrites sur le bon de livraison</li>
               <li>Prendre des photos du colis endommagé</li>
-              <li>Nous contacter immédiatement à : contact@touline-co.fr</li>
+              <li>Nous contacter immédiatement à : touline_co@proton.me</li>
             </ul>
           </div>
         </section>
@@ -82,7 +82,7 @@ const ShippingReturns = () => {
           <h3 className="text-xl font-semibold text-gray-900 mb-3">Procédure de retour</h3>
           <ol className="list-decimal list-inside space-y-3 ml-4 mb-4">
             <li>
-              <strong>Contactez-nous</strong> par email à contact@touline-co.fr en indiquant
+              <strong>Contactez-nous</strong> par email à touline_co@proton.me en indiquant
               votre numéro de commande et le motif du retour
             </li>
             <li>
@@ -137,7 +137,7 @@ const ShippingReturns = () => {
               </h3>
               <p className="text-gray-700">
                 Oui, si votre commande n'a pas encore été expédiée. Contactez-nous au plus vite
-                à contact@touline-co.fr en précisant votre numéro de commande et la nouvelle adresse.
+                à touline_co@proton.me en précisant votre numéro de commande et la nouvelle adresse.
               </p>
             </div>
 
@@ -171,7 +171,7 @@ const ShippingReturns = () => {
             Pour toute question concernant votre livraison ou un retour :
           </p>
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="mb-2"><strong>Email :</strong> contact@touline-co.fr</p>
+            <p className="mb-2"><strong>Email :</strong> touline_co@proton.me</p>
             <p className="mb-2"><strong>Téléphone :</strong> [À COMPLÉTER]</p>
             <p><strong>Délai de réponse :</strong> Sous 48h ouvrées</p>
           </div>

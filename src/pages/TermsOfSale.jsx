@@ -35,7 +35,7 @@ const TermsOfSale = () => {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Commande</h2>
           <p className="mb-4">
-            Les commandes peuvent être passées par email à l'adresse : contact@touline-co.fr
+            Les commandes peuvent être passées par email à l'adresse : touline_co@proton.me
           </p>
           <p className="mb-4">
             Toute commande doit préciser :
@@ -144,7 +144,7 @@ const TermsOfSale = () => {
           </p>
           <p>
             Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression
-            de vos données. Pour exercer ces droits : contact@touline-co.fr
+            de vos données. Pour exercer ces droits : touline_co@proton.me
           </p>
         </section>
 
@@ -168,7 +168,7 @@ const TermsOfSale = () => {
           <p className="mb-2">
             <strong>Touline & Co</strong>
           </p>
-          <p className="mb-2">Email : contact@touline-co.fr</p>
+          <p className="mb-2">Email : touline_co@proton.me</p>
           <p>[À COMPLÉTER - Adresse postale et téléphone]</p>
         </section>
 

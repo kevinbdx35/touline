@@ -9,9 +9,9 @@ const EmailLink = ({ className = '', children }) => {
 
   useEffect(() => {
     // Construct email on client-side to avoid bots scraping HTML
-    const user = 'contact';
-    const domain = 'touline-co';
-    const tld = 'fr';
+    const user = 'touline_co';
+    const domain = 'proton';
+    const tld = 'me';
     setEmail(`${user}@${domain}.${tld}`);
   }, []);
 
