@@ -15,9 +15,8 @@ const ProductCard = ({ category, isNew, index }) => {
   };
 
   const getSizeLabel = () => {
-    if (category.name.includes('Grosse') || category.name.includes('Géante')) return { icon: '🔷', label: 'Grande taille' };
     if (category.name.includes('Moyenne')) return { icon: '🔶', label: 'Taille moyenne' };
-    if (category.name.includes('Petite')) return { icon: '🔹', label: 'Petite taille' };
+    if (category.name.includes('Grosse') || category.name.includes('Géante')) return { icon: '🔷', label: 'Grande taille' };
     return { icon: '🔹', label: 'Taille standard' };
   };
 
@@ -63,11 +62,13 @@ const ProductCard = ({ category, isNew, index }) => {
         )}
 
         {/* Size Indicator */}
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
-          <span className="text-sm font-medium text-gray-700">
-            {sizeInfo.icon} {sizeInfo.label}
-          </span>
-        </div>
+        {!category.name.includes('Sur-Mesure') && (
+          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
+            <span className="text-sm font-medium text-gray-700">
+              {sizeInfo.icon} {sizeInfo.label}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Content */}
