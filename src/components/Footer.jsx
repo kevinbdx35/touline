@@ -10,7 +10,7 @@ const Footer = () => {
             <h3 className="text-2xl font-bold mb-4">Touline & Co</h3>
             <p className="text-gray-400">
               Artisan créateur de toulines marines depuis plus de 10 ans.
-              Chaque pièce est unique et fabriquée avec passion.
+              Chaque pièce est unique et fabriquée à la main en Bretagne avec passion.
             </p>
           </div>
 

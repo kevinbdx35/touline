@@ -1,11 +1,6 @@
-const Hero = () => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+import { scrollToSection } from '../utils/scrollToSection';
 
+const Hero = () => {
   return (
     <section id="accueil" className="relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100">
       <div className="absolute inset-0 bg-pattern opacity-5"></div>

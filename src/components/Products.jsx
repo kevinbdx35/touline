@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { categories } from '../data/products';
 
 const ProductCard = ({ category, isNew }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -35,6 +36,9 @@ const ProductCard = ({ category, isNew }) => {
             src={category.images[activeImageIndex]}
             alt={`${category.name} - Exemple ${activeImageIndex + 1} - Touline artisanale faite main`}
             loading="lazy"
+            width="400"
+            height="400"
+            decoding="async"
             className={`max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
             onLoad={() => setImageLoading(false)}
             onError={(e) => {
@@ -77,7 +81,7 @@ const ProductCard = ({ category, isNew }) => {
         </div>
 
         {/* Description */}
-        <p className="text-gray-600 leading-relaxed h-20 flex items-center">
+        <p className="text-gray-600 leading-relaxed flex items-center">
           {category.description}
         </p>
 
@@ -112,6 +116,9 @@ const ProductCard = ({ category, isNew }) => {
                   src={image}
                   alt={`${category.name} - Variante couleur ${index + 1}`}
                   loading="lazy"
+                  width="64"
+                  height="64"
+                  decoding="async"
                   className="w-full h-full object-contain bg-gradient-to-br from-gray-50 to-white p-2"
                   onError={(e) => {
                     e.target.style.display = 'none';
@@ -130,76 +137,6 @@ const ProductCard = ({ category, isNew }) => {
 };
 
 const Products = () => {
-  const categories = [
-    {
-      id: 1,
-      name: 'Toulines Monocolor',
-      description: 'Toulines élégantes en une seule couleur, parfaites pour un style épuré et raffiné.',
-      price: '15€',
-      isNew: false,
-      images: [
-        'img/monocolor.webp',
-        'img/monocolor13.webp',
-        'img/monocolor14.webp',
-        'img/monocolor15.webp',
-        'img/monocolor16.webp',
-        'img/monocolor17.webp'
-      ]
-    },
-    {
-      id: 2,
-      name: 'Toulines Bicolor',
-      description: 'Toulines bicolores avec un contraste harmonieux de deux couleurs.',
-      price: '18€',
-      isNew: false,
-      images: [
-        'img/bicolor3.webp',
-        'img/bicolor5.webp',
-        'img/bicolor6.webp',
-        'img/bicolor7.webp',
-        'img/bicolor10.webp',
-        'img/bicolor11.webp',
-        'img/bicolor12.webp',
-        'img/bicolor19.webp'
-      ]
-    },
-    {
-      id: 3,
-      name: 'Toulines Tricolor',
-      description: 'Toulines tricolores aux couleurs vives et harmonieuses pour un style unique.',
-      price: '22€',
-      isNew: false,
-      images: [
-        'img/tricolor.webp',
-        'img/tricolor1.webp',
-        'img/tricolor4.webp',
-        'img/tricolor5.webp',
-        'img/tricolor18.webp'
-      ]
-    },
-    {
-      id: 4,
-      name: 'Toulines Middle',
-      description: 'Toulines de taille moyenne pour une décoration plus présente et élégante.',
-      price: '25€',
-      isNew: true,
-      images: [
-        'img/middle1.webp'
-      ]
-    },
-    {
-      id: 5,
-      name: 'Toulines Big',
-      description: 'Grandes toulines décoratives, parfaites comme butoir de porte ou décoration.',
-      price: '35€',
-      isNew: true,
-      images: [
-        'img/big2.webp',
-        'img/big3.webp'
-      ]
-    }
-  ];
-
   return (
     <section id="produits" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -207,9 +144,15 @@ const Products = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Nos Créations
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
             Découvrez notre collection de toulines artisanales, chacune confectionnée avec soin et passion
           </p>
+          <div className="max-w-3xl mx-auto bg-green-50 border border-green-200 rounded-xl p-4">
+            <p className="text-sm text-green-900">
+              <span className="font-semibold">✓ Stock permanent :</span> Toutes nos tailles sont disponibles en stock. Les couleurs peuvent varier selon nos arrivages,
+              mais nous pouvons également fabriquer votre touline sur commande avec les couleurs de votre choix.
+            </p>
+          </div>
         </div>
 
         {/* Categories Grid */}

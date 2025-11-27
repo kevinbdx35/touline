@@ -1,14 +1,12 @@
 import { useState } from 'react';
+import { scrollToSection as scrollTo } from '../utils/scrollToSection';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
-    }
+    scrollTo(sectionId);
+    setIsOpen(false);
   };
 
   return (
@@ -39,9 +37,12 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600 focus:outline-none"
+              className="text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-2"
+              aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
-              <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 {isOpen ? (
                   <path d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -55,7 +56,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t">
+        <div id="mobile-menu" className="md:hidden bg-white border-t">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <button onClick={() => scrollToSection('accueil')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md">
               Accueil

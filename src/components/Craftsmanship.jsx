@@ -33,10 +33,15 @@ const Craftsmanship = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Notre Savoir-Faire
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-4">
             La touline est un nœud marin traditionnel utilisé depuis des siècles par les marins.
             Aujourd'hui, nous perpétuons cet art ancestral pour créer des pièces uniques.
           </p>
+          <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg">
+            <span className="text-xl">🇫🇷</span>
+            <span>Fabriqué artisanalement en Bretagne</span>
+            <span className="text-xl">✋</span>
+          </div>
         </div>
 
         {/* Process Steps */}
@@ -68,7 +73,8 @@ const Craftsmanship = () => {
                   du quotidien, en conservant les techniques de tressage traditionnelles.
                 </p>
                 <p>
-                  Chaque touline est unique, confectionnée entièrement à la main avec passion et expertise.
+                  Chaque touline est unique, confectionnée entièrement à la main en Bretagne avec passion et expertise.
+                  Notre atelier breton perpétue les traditions maritimes ancestrales de la région.
                 </p>
               </div>
             </div>
