@@ -1,4 +1,11 @@
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
 const Craftsmanship = () => {
+  const [headerRef, headerVisible] = useScrollAnimation();
+  const [stepsRef, stepsVisible] = useScrollAnimation();
+  const [aboutRef, aboutVisible] = useScrollAnimation();
+  const [valuesRef, valuesVisible] = useScrollAnimation();
+
   const steps = [
     {
       number: '01',
@@ -29,7 +36,7 @@ const Craftsmanship = () => {
   return (
     <section id="savoir-faire" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className={`text-center mb-16 animate-on-scroll ${headerVisible ? 'animate-fade-in' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Notre Savoir-Faire
           </h2>
@@ -45,7 +52,7 @@ const Craftsmanship = () => {
         </div>
 
         {/* Process Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div ref={stepsRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 animate-on-scroll ${stepsVisible ? 'animate-slide-up' : ''}`}>
           {steps.map((step, index) => (
             <div key={index} className="text-center">
               <div className="mb-4 text-6xl">{step.icon}</div>
@@ -57,7 +64,7 @@ const Craftsmanship = () => {
         </div>
 
         {/* About Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        <div ref={aboutRef} className={`bg-white rounded-2xl shadow-xl p-8 md:p-12 animate-on-scroll ${aboutVisible ? 'animate-fade-in' : ''}`}>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-4">
@@ -100,7 +107,7 @@ const Craftsmanship = () => {
         </div>
 
         {/* Values */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div ref={valuesRef} className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll ${valuesVisible ? 'animate-slide-up' : ''}`}>
           <div className="text-center p-6 bg-blue-50 rounded-xl">
             <div className="text-4xl mb-3">🌿</div>
             <h4 className="text-xl font-bold text-gray-900 mb-2">Écologique</h4>

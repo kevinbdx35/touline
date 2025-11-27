@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { categories } from '../data/products';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-const ProductCard = ({ category, isNew }) => {
+const ProductCard = ({ category, isNew, index }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(true);
+  const [ref, isVisible] = useScrollAnimation();
 
   const handleKeyDown = (e, index) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -21,7 +23,11 @@ const ProductCard = ({ category, isNew }) => {
   const sizeInfo = getSizeLabel();
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100">
+    <div
+      ref={ref}
+      className={`bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100 animate-on-scroll ${isVisible ? 'animate-slide-up' : ''}`}
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
       {/* Main Image */}
       <div className="relative h-96 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
         {/* Skeleton Loader */}
@@ -157,8 +163,8 @@ const Products = () => {
 
         {/* Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((category) => (
-            <ProductCard key={category.id} category={category} isNew={category.isNew} />
+          {categories.map((category, index) => (
+            <ProductCard key={category.id} category={category} isNew={category.isNew} index={index} />
           ))}
         </div>
       </div>
