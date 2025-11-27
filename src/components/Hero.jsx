@@ -6,13 +6,13 @@ const Hero = () => {
       <div className="absolute inset-0 bg-pattern opacity-5"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 sm:mb-6">
           Touline & Co
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 mb-4">
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-3 sm:mb-4">
           L'art de la touline artisanale
         </p>
-        <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto px-2">
           Des créations uniques tissées avec passion. Chaque touline est confectionnée à la main selon les traditions maritimes ancestrales.
         </p>
 
@@ -32,18 +32,18 @@ const Hero = () => {
         </div>
 
         {/* Decorative elements */}
-        <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+        <div className="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto px-2">
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600">100%</div>
-            <div className="text-sm text-gray-600 mt-1">Artisanal</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600">100%</div>
+            <div className="text-xs sm:text-sm text-gray-600 mt-1">Artisanal</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600">Unique</div>
-            <div className="text-sm text-gray-600 mt-1">Pièces uniques</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600">Unique</div>
+            <div className="text-xs sm:text-sm text-gray-600 mt-1">Pièces uniques</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600">Tradition</div>
-            <div className="text-sm text-gray-600 mt-1">Savoir-faire</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600">Tradition</div>
+            <div className="text-xs sm:text-sm text-gray-600 mt-1">Savoir-faire</div>
           </div>
         </div>
       </div>

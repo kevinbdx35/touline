@@ -18,10 +18,10 @@ const Contact = () => {
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <div ref={cardRef} className={`bg-white rounded-2xl shadow-xl p-12 text-center animate-on-scroll ${cardVisible ? 'animate-slide-up' : ''}`}>
-            <div className="text-6xl mb-6">📧</div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Email</h3>
-            <EmailLink className="text-3xl text-blue-600 hover:text-blue-700 transition font-semibold" />
+          <div ref={cardRef} className={`bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-center animate-on-scroll ${cardVisible ? 'animate-slide-up' : ''}`}>
+            <div className="text-5xl sm:text-6xl mb-4 sm:mb-6">📧</div>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Email</h3>
+            <EmailLink className="text-xl sm:text-2xl md:text-3xl text-blue-600 hover:text-blue-700 transition font-semibold break-all" />
           </div>
         </div>
       </div>

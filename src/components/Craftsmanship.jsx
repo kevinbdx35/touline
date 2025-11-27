@@ -40,37 +40,37 @@ const Craftsmanship = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Notre Savoir-Faire
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-4">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-4 px-2">
             La touline est un nœud marin traditionnel utilisé depuis des siècles par les marins.
             Aujourd'hui, nous perpétuons cet art ancestral pour créer des pièces uniques.
           </p>
-          <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg">
-            <span className="text-xl">🇫🇷</span>
-            <span>Fabriqué artisanalement en Bretagne</span>
-            <span className="text-xl">✋</span>
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold shadow-lg text-sm sm:text-base">
+            <span className="text-base sm:text-xl">🇫🇷</span>
+            <span className="whitespace-nowrap">Fabriqué artisanalement en Bretagne</span>
+            <span className="text-base sm:text-xl">✋</span>
           </div>
         </div>
 
         {/* Process Steps */}
-        <div ref={stepsRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 animate-on-scroll ${stepsVisible ? 'animate-slide-up' : ''}`}>
+        <div ref={stepsRef} className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16 animate-on-scroll ${stepsVisible ? 'animate-slide-up' : ''}`}>
           {steps.map((step, index) => (
-            <div key={index} className="text-center">
-              <div className="mb-4 text-6xl">{step.icon}</div>
-              <div className="text-5xl font-bold text-blue-200 mb-2">{step.number}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-              <p className="text-gray-600">{step.description}</p>
+            <div key={index} className="text-center px-2">
+              <div className="mb-3 sm:mb-4 text-5xl sm:text-6xl">{step.icon}</div>
+              <div className="text-4xl sm:text-5xl font-bold text-blue-200 mb-2">{step.number}</div>
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+              <p className="text-sm sm:text-base text-gray-600">{step.description}</p>
             </div>
           ))}
         </div>
 
         {/* About Section */}
-        <div ref={aboutRef} className={`bg-white rounded-2xl shadow-xl p-8 md:p-12 animate-on-scroll ${aboutVisible ? 'animate-fade-in' : ''}`}>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div ref={aboutRef} className={`bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 animate-on-scroll ${aboutVisible ? 'animate-fade-in' : ''}`}>
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
                 L'histoire de la touline
               </h3>
-              <div className="space-y-4 text-gray-600">
+              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-600">
                 <p>
                   La touline, aussi appelée "pomme de touline", est un nœud marin traditionnel qui servait
                   à lester l'extrémité d'une ligne pour faciliter son lancer d'un navire à un quai.
@@ -86,20 +86,20 @@ const Craftsmanship = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl p-8 text-center">
-              <div className="text-8xl mb-4">⚓</div>
-              <div className="space-y-4">
-                <div className="bg-white rounded-lg p-4 shadow">
-                  <div className="text-3xl font-bold text-blue-600">10+</div>
-                  <div className="text-sm text-gray-600">Années d'expérience</div>
+            <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl p-6 sm:p-8 text-center">
+              <div className="text-6xl sm:text-8xl mb-3 sm:mb-4">⚓</div>
+              <div className="space-y-3 sm:space-y-4">
+                <div className="bg-white rounded-lg p-3 sm:p-4 shadow">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600">10+</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Années d'expérience</div>
                 </div>
-                <div className="bg-white rounded-lg p-4 shadow">
-                  <div className="text-3xl font-bold text-blue-600">1000+</div>
-                  <div className="text-sm text-gray-600">Toulines créées</div>
+                <div className="bg-white rounded-lg p-3 sm:p-4 shadow">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600">1000+</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Toulines créées</div>
                 </div>
-                <div className="bg-white rounded-lg p-4 shadow">
-                  <div className="text-3xl font-bold text-blue-600">100%</div>
-                  <div className="text-sm text-gray-600">Fait main</div>
+                <div className="bg-white rounded-lg p-3 sm:p-4 shadow">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600">100%</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Fait main</div>
                 </div>
               </div>
             </div>
@@ -107,21 +107,21 @@ const Craftsmanship = () => {
         </div>
 
         {/* Values */}
-        <div ref={valuesRef} className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll ${valuesVisible ? 'animate-slide-up' : ''}`}>
-          <div className="text-center p-6 bg-blue-50 rounded-xl">
-            <div className="text-4xl mb-3">🌿</div>
-            <h4 className="text-xl font-bold text-gray-900 mb-2">Écologique</h4>
-            <p className="text-gray-600">Matériaux naturels et durables, production responsable</p>
+        <div ref={valuesRef} className={`mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 animate-on-scroll ${valuesVisible ? 'animate-slide-up' : ''}`}>
+          <div className="text-center p-5 sm:p-6 bg-blue-50 rounded-xl">
+            <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">🌿</div>
+            <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Écologique</h4>
+            <p className="text-sm sm:text-base text-gray-600">Matériaux naturels et durables, production responsable</p>
           </div>
-          <div className="text-center p-6 bg-blue-50 rounded-xl">
-            <div className="text-4xl mb-3">❤️</div>
-            <h4 className="text-xl font-bold text-gray-900 mb-2">Passion</h4>
-            <p className="text-gray-600">Chaque pièce est créée avec amour et dévouement</p>
+          <div className="text-center p-5 sm:p-6 bg-blue-50 rounded-xl">
+            <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">❤️</div>
+            <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Passion</h4>
+            <p className="text-sm sm:text-base text-gray-600">Chaque pièce est créée avec amour et dévouement</p>
           </div>
-          <div className="text-center p-6 bg-blue-50 rounded-xl">
-            <div className="text-4xl mb-3">🏆</div>
-            <h4 className="text-xl font-bold text-gray-900 mb-2">Qualité</h4>
-            <p className="text-gray-600">Savoir-faire artisanal et finitions impeccables</p>
+          <div className="text-center p-5 sm:p-6 bg-blue-50 rounded-xl">
+            <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">🏆</div>
+            <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Qualité</h4>
+            <p className="text-sm sm:text-base text-gray-600">Savoir-faire artisanal et finitions impeccables</p>
           </div>
         </div>
       </div>

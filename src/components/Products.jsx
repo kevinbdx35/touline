@@ -72,14 +72,14 @@ const ProductCard = ({ category, isNew, index }) => {
       </div>
 
       {/* Content */}
-      <div className="p-6 space-y-4">
+      <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
         {/* Title and Price */}
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="text-2xl font-bold text-gray-900 leading-tight">
+        <div className="flex items-start justify-between gap-3 sm:gap-4">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
             {category.name}
           </h3>
           <div className="text-right flex-shrink-0">
-            <div className="text-3xl font-bold text-blue-600">
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600 whitespace-nowrap">
               {category.price}
             </div>
             <div className="text-xs text-gray-500 mt-1">
@@ -94,12 +94,12 @@ const ProductCard = ({ category, isNew, index }) => {
         </p>
 
         {/* Thumbnail Carousel */}
-        <div className="pt-4">
-          <p className="text-xs font-medium text-gray-500 mb-3 uppercase tracking-wide">
+        <div className="pt-3 sm:pt-4">
+          <p className="text-xs font-medium text-gray-500 mb-2 sm:mb-3 uppercase tracking-wide">
             Exemples de couleurs possibles
           </p>
           <div
-            className="flex flex-wrap gap-2"
+            className="flex flex-wrap gap-1.5 sm:gap-2"
             role="group"
             aria-label="Galerie d'exemples de couleurs"
           >
@@ -114,7 +114,7 @@ const ProductCard = ({ category, isNew, index }) => {
                 aria-label={`Voir l'exemple de couleur ${index + 1} sur ${category.images.length}`}
                 aria-pressed={activeImageIndex === index}
                 tabIndex={0}
-                className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 ${
+                className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 ${
                   activeImageIndex === index
                     ? 'border-blue-500 ring-2 ring-blue-200 scale-105'
                     : 'border-gray-200 hover:border-blue-300 hover:scale-105'
@@ -148,15 +148,15 @@ const Products = () => {
   return (
     <section id="produits" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-2">
             Nos Créations
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-4 sm:mb-6 px-4">
             Découvrez notre collection de toulines artisanales, chacune confectionnée avec soin et passion
           </p>
-          <div className="max-w-3xl mx-auto bg-green-50 border border-green-200 rounded-xl p-4">
-            <p className="text-sm text-green-900">
+          <div className="max-w-3xl mx-auto bg-green-50 border border-green-200 rounded-xl p-3 sm:p-4 mx-4">
+            <p className="text-xs sm:text-sm text-green-900 text-left sm:text-center">
               <span className="font-semibold">✓ Stock permanent :</span> Toutes nos tailles sont disponibles en stock. Les couleurs peuvent varier selon nos arrivages,
               mais nous pouvons également fabriquer votre touline sur commande avec les couleurs de votre choix.
             </p>
@@ -164,7 +164,7 @@ const Products = () => {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {categories.map((category, index) => (
             <ProductCard key={category.id} category={category} isNew={category.isNew} index={index} />
           ))}
