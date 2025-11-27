@@ -15,8 +15,9 @@ const ProductCard = ({ category, isNew, index }) => {
   };
 
   const getSizeLabel = () => {
-    if (category.name.includes('Big')) return { icon: '🔷', label: 'Grande taille' };
-    if (category.name.includes('Middle')) return { icon: '🔶', label: 'Taille moyenne' };
+    if (category.name.includes('Grosse') || category.name.includes('Géante')) return { icon: '🔷', label: 'Grande taille' };
+    if (category.name.includes('Moyenne')) return { icon: '🔶', label: 'Taille moyenne' };
+    if (category.name.includes('Petite')) return { icon: '🔹', label: 'Petite taille' };
     return { icon: '🔹', label: 'Taille standard' };
   };
 
