@@ -1,52 +1,126 @@
+import { useState } from 'react';
+
+const ProductCard = ({ category }) => {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  return (
+    <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100">
+      {/* Main Image */}
+      <div className="relative h-96 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center p-6">
+          <img
+            src={category.images[activeImageIndex]}
+            alt={`${category.name} ${activeImageIndex + 1}`}
+            className="max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-6 space-y-4">
+        {/* Title and Price */}
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="text-2xl font-bold text-gray-900 leading-tight">
+            {category.name}
+          </h3>
+          <div className="text-right flex-shrink-0">
+            <div className="text-3xl font-bold text-blue-600">
+              {category.price}
+            </div>
+            <div className="text-xs text-gray-500 mt-1">
+              l'unité
+            </div>
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="text-gray-600 leading-relaxed">
+          {category.description}
+        </p>
+
+        {/* Thumbnail Carousel */}
+        <div className="pt-4">
+          <p className="text-xs font-medium text-gray-500 mb-3 uppercase tracking-wide">
+            Exemples de couleurs possibles
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {category.images.map((image, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveImageIndex(index)}
+                className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
+                  activeImageIndex === index
+                    ? 'border-blue-500 ring-2 ring-blue-200 scale-105'
+                    : 'border-gray-200 hover:border-blue-300 hover:scale-105'
+                }`}
+              >
+                <img
+                  src={image}
+                  alt={`${category.name} miniature ${index + 1}`}
+                  className="w-full h-full object-contain bg-gradient-to-br from-gray-50 to-white p-2"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+                {activeImageIndex === index && (
+                  <div className="absolute inset-0 bg-blue-500/10"></div>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Products = () => {
-  const products = [
+  const categories = [
     {
       id: 1,
-      name: 'Touline Classique',
-      description: 'La touline traditionnelle en coton tressé. Idéale comme porte-clés ou décoration marine.',
+      name: 'Toulines Monocolor',
+      description: 'Toulines élégantes en une seule couleur, parfaites pour un style épuré et raffiné. Disponibles en plusieurs teintes.',
       price: '15€',
-      colors: ['Bleu marine', 'Rouge', 'Blanc', 'Naturel'],
-      image: 'img/20251110_194201-removebg-preview.png'
+      images: [
+        'img/monocolor.png',
+        'img/monocolor13.png',
+        'img/monocolor14.png',
+        'img/monocolor15.png',
+        'img/monocolor16.png',
+        'img/monocolor17.png'
+      ]
     },
     {
       id: 2,
-      name: 'Touline Premium',
-      description: 'Touline en corde de qualité supérieure avec finitions soignées et nœud marin authentique.',
-      price: '25€',
-      colors: ['Bleu roi', 'Bordeaux', 'Vert sapin'],
-      image: 'img/20251110_194301-removebg-preview.png'
+      name: 'Toulines Bicolor',
+      description: 'Toulines bicolores avec un contraste harmonieux de deux couleurs. Large choix de combinaisons disponibles.',
+      price: '18€',
+      images: [
+        'img/bicolor3.png',
+        'img/bicolor5.png',
+        'img/bicolor6.png',
+        'img/bicolor7.png',
+        'img/bicolor10.png',
+        'img/bicolor11.png',
+        'img/bicolor12.png',
+        'img/bicolor19.png'
+      ]
     },
     {
       id: 3,
-      name: 'Touline Personnalisée',
-      description: 'Créez votre touline unique avec vos couleurs et motifs préférés.',
-      price: 'Sur devis',
-      colors: ['Personnalisable'],
-      image: 'img/20251110_194407-removebg-preview.png'
-    },
-    {
-      id: 4,
-      name: 'Mini Touline',
-      description: 'Version miniature parfaite pour bijoux de sac ou porte-clés discret.',
-      price: '12€',
-      colors: ['Toutes couleurs'],
-      image: 'img/20251110_194501-removebg-preview.png'
-    },
-    {
-      id: 5,
-      name: 'Touline Décoration',
-      description: 'Grande touline décorative pour intérieur marin ou décoration murale.',
-      price: '40€',
-      colors: ['Écru', 'Bleu océan', 'Gris perle'],
-      image: 'img/20251110_194133-removebg-preview.png'
-    },
-    {
-      id: 6,
-      name: 'Set Toulines',
-      description: 'Coffret de 3 toulines assorties. Parfait pour un cadeau marin.',
-      price: '35€',
-      colors: ['Assortiment mer', 'Assortiment terre'],
-      image: 'img/20251110_194453-removebg-preview.png'
+      name: 'Toulines Tricolor',
+      description: 'Toulines tricolores aux couleurs vives et harmonieuses. Un style unique et dynamique pour se démarquer.',
+      price: '22€',
+      images: [
+        'img/tricolor.png',
+        'img/tricolor1.png',
+        'img/tricolor4.png',
+        'img/tricolor5.png',
+        'img/tricolor18.png'
+      ]
     }
   ];
 
@@ -62,50 +136,10 @@ const Products = () => {
           </p>
         </div>
 
+        {/* Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group"
-            >
-              <div className="h-64 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.parentElement.innerHTML = '<div class="text-6xl">📸</div><p class="text-sm text-gray-600 mt-2">Image à venir</p>';
-                  }}
-                />
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {product.name}
-                </h3>
-                <p className="text-gray-600 mb-4 min-h-[60px]">
-                  {product.description}
-                </p>
-
-                <div className="mb-4">
-                  <p className="text-sm text-gray-500 mb-2">Couleurs disponibles:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {product.colors.map((color, index) => (
-                      <span key={index} className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">
-                        {color}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-gray-200 text-center">
-                  <span className="text-2xl font-bold text-blue-600">
-                    {product.price}
-                  </span>
-                </div>
-              </div>
-            </div>
+          {categories.map((category) => (
+            <ProductCard key={category.id} category={category} />
           ))}
         </div>
       </div>
