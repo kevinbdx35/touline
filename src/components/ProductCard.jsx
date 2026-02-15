@@ -76,9 +76,7 @@ const ProductCard = ({ category, isNew, index }) => {
   return (
     <>
       <div
-        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden animate-on-scroll flex flex-col"
-        data-animation="animate-slide-up"
-        style={{ animationDelay: `${index * 0.08}s` }}
+        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
       >
         {/* Image area */}
         {isSurMesure ? (
