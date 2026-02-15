@@ -1,5 +1,6 @@
 ---
 import EmailLink from './EmailLink.jsx';
+const base = import.meta.env.BASE_URL;
 ---
 
 <section id="contact" class="py-20 bg-gradient-to-b from-white to-cream">
@@ -15,7 +16,7 @@ import EmailLink from './EmailLink.jsx';
 
     <div class="max-w-2xl mx-auto">
       <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-center">
-        <img src="/img_2/recto_c_v.webp" alt="Carte de visite La Touline" class="w-full max-w-md mx-auto rounded-xl mb-6 sm:mb-8" />
+        <img src={`${base}img_2/recto_c_v.webp`} alt="Carte de visite La Touline" class="w-full max-w-md mx-auto rounded-xl mb-6 sm:mb-8" />
         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Email</h3>
         <EmailLink client:load className="text-base sm:text-2xl md:text-3xl text-primary hover:text-secondary transition font-semibold break-words" />
       </div>
