@@ -1,6 +1,14 @@
 ---
 import { categories } from '../data/products.js';
 import ProductCard from './ProductCard.jsx';
+
+const base = import.meta.env.BASE_URL;
+
+// Prefix image paths with base URL so they resolve correctly
+const categoriesWithBase = categories.map((cat) => ({
+  ...cat,
+  images: cat.images.map((img) => `${base}${img}`),
+}));
 ---
 
 <section id="produits" class="py-20 bg-white">
@@ -22,7 +30,7 @@ import ProductCard from './ProductCard.jsx';
 
     <!-- Categories Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-      {categories.map((category, index) => (
+      {categoriesWithBase.map((category, index) => (
         <ProductCard
           client:visible
           category={category}

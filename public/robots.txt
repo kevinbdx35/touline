@@ -1,14 +1,6 @@
 # Robots.txt pour Touline & Co
-# https://www.robotstxt.org/
 
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://votre-domaine.fr/sitemap.xml
-
-# Bloquer les fichiers et dossiers de développement
-Disallow: /node_modules/
-Disallow: /src/
-Disallow: /*.json
-Disallow: /*.config.js
+Sitemap: https://kevinbdx35.github.io/touline/sitemap-index.xml

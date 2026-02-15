@@ -10,6 +10,8 @@ const {
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
+const siteUrl = "https://kevinbdx35.github.io/touline";
+const currentUrl = `${siteUrl}${Astro.url.pathname.replace(base, '/')}`;
 ---
 
 <!doctype html>
@@ -29,23 +31,23 @@ const base = import.meta.env.BASE_URL;
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://votre-domaine.fr/" />
+    <meta property="og:url" content={currentUrl} />
     <meta property="og:title" content="Touline & Co - Toulines Artisanales Fait Main" />
     <meta property="og:description" content="Créations uniques tissées avec passion. Chaque touline est confectionnée à la main selon les traditions maritimes ancestrales." />
-    <meta property="og:image" content="https://votre-domaine.fr/img/monocolor.webp" />
+    <meta property="og:image" content={`${siteUrl}/img/monocolor.webp`} />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Touline & Co" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://votre-domaine.fr/" />
+    <meta property="twitter:url" content={currentUrl} />
     <meta property="twitter:title" content="Touline & Co - Toulines Artisanales Fait Main" />
     <meta property="twitter:description" content="Créations uniques tissées avec passion. Chaque touline est confectionnée à la main selon les traditions maritimes ancestrales." />
-    <meta property="twitter:image" content="https://votre-domaine.fr/img/monocolor.webp" />
+    <meta property="twitter:image" content={`${siteUrl}/img/monocolor.webp`} />
 
     <!-- Additional SEO -->
     <meta name="theme-color" content="#2563eb" />
-    <link rel="canonical" href="https://votre-domaine.fr/" />
+    <link rel="canonical" href={currentUrl} />
   </head>
   <body class="min-h-screen">
     <slot />
