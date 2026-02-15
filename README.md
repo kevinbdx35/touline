@@ -2,18 +2,18 @@
 
 Site web vitrine pour Touline & Co, artisan créateur de toulines marines en Bretagne.
 
-## 🎯 À propos
+## À propos
 
 Touline & Co est une entreprise artisanale bretonne spécialisée dans la fabrication de toulines marines traditionnelles. Chaque touline est confectionnée entièrement à la main en respectant les techniques ancestrales de tressage maritime.
 
-## 🛠️ Technologies
+## Technologies
 
-- **React 19** - Bibliothèque JavaScript pour l'interface utilisateur
-- **Vite 7** - Build tool et dev server ultra-rapide
+- **Astro 5** - Framework web statique avec architecture islands
+- **React 19** - Composants interactifs (ProductCard, EmailLink)
 - **Tailwind CSS 4** - Framework CSS utility-first
-- **ESLint** - Linter pour la qualité du code
+- **@astrojs/sitemap** - Génération automatique du sitemap
 
-## 🚀 Installation
+## Installation
 
 ```bash
 # Installer les dépendances
@@ -27,87 +27,110 @@ npm run build
 
 # Prévisualiser le build
 npm run preview
-
-# Linter le code
-npm run lint
 ```
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```
 src/
-├── components/          # Composants React
-│   ├── Navbar.jsx      # Navigation principale
-│   ├── Hero.jsx        # Section d'accueil
-│   ├── Products.jsx    # Catalogue produits
-│   ├── Craftsmanship.jsx # Section savoir-faire
-│   ├── Contact.jsx     # Section contact
-│   ├── Footer.jsx      # Pied de page
-│   └── EmailLink.jsx   # Composant email protégé
-├── data/               # Données de l'application
-│   └── products.js     # Catalogue des toulines
-├── utils/              # Fonctions utilitaires
-│   └── scrollToSection.js # Navigation smooth scroll
-├── App.jsx             # Composant racine
-├── main.jsx           # Point d'entrée
-└── index.css          # Styles globaux
+├── pages/                              # Pages routées automatiquement
+│   ├── index.astro                     # Page d'accueil
+│   ├── mentions-legales.astro          # Mentions légales
+│   ├── cgv.astro                       # Conditions générales de vente
+│   ├── politique-confidentialite.astro  # Politique de confidentialité
+│   ├── livraison-retours.astro         # Livraison & retours
+│   └── 404.astro                       # Page 404
+├── layouts/
+│   ├── Layout.astro                    # Layout principal (head, SEO, meta)
+│   └── LegalLayout.astro              # Layout pages légales
+├── components/
+│   ├── Navbar.astro                    # Navigation (script inline vanilla)
+│   ├── Hero.astro                      # Section d'accueil
+│   ├── Products.astro                  # Section catalogue
+│   ├── ProductCard.jsx                 # Carte produit — React island (client:visible)
+│   ├── Craftsmanship.astro             # Section savoir-faire
+│   ├── Contact.astro                   # Section contact
+│   ├── EmailLink.jsx                   # Email protégé — React island (client:load)
+│   └── Footer.astro                    # Pied de page
+├── data/
+│   └── products.js                     # Catalogue des 15 toulines
+├── scripts/
+│   └── scroll-animation.js            # IntersectionObserver vanilla
+└── styles/
+    └── global.css                      # Styles globaux + palette couleurs
 
 public/
-├── img/               # Images des produits
-├── favicon.svg        # Icône du site
-├── sitemap.xml        # Plan du site pour SEO
-└── robots.txt         # Directives pour les crawlers
+├── img/                                # Images produits (WebP)
+├── favicon.svg                         # Icône du site
+└── robots.txt                          # Directives crawlers
 ```
 
-## ✨ Fonctionnalités
+## Architecture
 
-- ✅ Design responsive (mobile, tablette, desktop)
-- ✅ Navigation smooth scroll
-- ✅ Galerie d'images avec prévisualisation
-- ✅ Optimisation SEO (meta tags, Open Graph, sitemap)
-- ✅ Accessibilité WCAG (ARIA labels, navigation clavier)
-- ✅ Protection anti-spam pour l'email
-- ✅ Images optimisées en WebP
-- ✅ Lazy loading des images
-- ✅ Animations et transitions fluides
+Le site utilise l'architecture **islands** d'Astro : la majorité du HTML est rendu statiquement au build, seuls les composants interactifs sont hydratés côté client en React :
 
-## 🎨 Personnalisation
+| Composant | Type | Raison |
+|-----------|------|--------|
+| ProductCard | React `client:visible` | Galerie d'images interactive |
+| EmailLink | React `client:load` | Construction email côté client (anti-spam) |
+| Tous les autres | Astro (statique) | Aucune interactivité côté client |
+
+## Palette de couleurs
+
+Définie dans `src/styles/global.css` via `@theme` Tailwind CSS 4 :
+
+| Nom | Hex | Utilisation |
+|-----|-----|-------------|
+| `primary` | `#0081A7` | Marque, navigation, liens |
+| `secondary` | `#00AFB9` | Hover, accents turquoise |
+| `cream` | `#FDFCDC` | Fonds clairs, sections |
+| `peach` | `#FED9B7` | Accents doux, numéros d'étapes |
+| `coral` | `#F07167` | CTA, badges, prix |
+
+## Personnalisation
 
 ### Modifier les produits
 
-Éditez le fichier `src/data/products.js` pour ajouter, modifier ou supprimer des produits :
+Éditez `src/data/products.js` :
 
 ```javascript
 {
-  id: 6,
+  id: 16,
   name: 'Nouveau produit',
   description: 'Description du produit',
-  price: '20€',
+  price: '5€',
   isNew: true,
   images: ['img/nouvelle-image.webp']
 }
 ```
 
+Les images doivent être placées dans `public/img/` au format WebP.
+
 ### Changer les couleurs
 
-Le thème utilise Tailwind CSS. Les couleurs principales sont en bleu (`blue-600`, `blue-500`, etc.).
-Modifiez les classes dans les composants ou configurez `tailwind.config.js`.
+Modifiez le bloc `@theme` dans `src/styles/global.css` :
 
-### Mettre à jour l'URL du site
+```css
+@theme {
+  --color-primary: #0081A7;
+  --color-secondary: #00AFB9;
+  --color-cream: #FDFCDC;
+  --color-peach: #FED9B7;
+  --color-coral: #F07167;
+}
+```
 
-Remplacez `https://votre-domaine.fr/` dans :
-- `index.html` (meta tags Open Graph)
-- `public/sitemap.xml`
-- `public/robots.txt`
+### Mettre à jour le domaine
 
-## 📧 Contact
+Remplacez `kevinbdx35.github.io` dans :
+- `astro.config.mjs` (champ `site`)
+- `src/layouts/Layout.astro` (variable `siteUrl`)
+- `public/robots.txt` (URL du sitemap)
 
-Pour toute question : contact@touline-co.fr
+## Déploiement
 
-## 📄 Licence
+Le site se déploie automatiquement sur GitHub Pages via GitHub Actions à chaque push sur `main`. Le workflow est dans `.github/workflows/deploy.yml`.
+
+## Licence
 
 Tous droits réservés - Touline & Co
-
----
-
-🇫🇷 Fabriqué avec passion en Bretagne
