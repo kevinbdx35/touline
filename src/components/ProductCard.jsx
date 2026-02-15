@@ -56,113 +56,128 @@ const ProductCard = ({ category, isNew, index }) => {
         style={{ animationDelay: `${index * 0.08}s` }}
       >
         {/* Image area */}
-        <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-cream/50 overflow-hidden">
-          {/* Skeleton */}
-          {imageLoading && !imageError && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-2/3 h-2/3 rounded-2xl bg-gray-100 animate-pulse" />
+        {isSurMesure ? (
+          <div className="relative aspect-square bg-gradient-to-br from-primary/10 via-secondary/5 to-peach/20 overflow-hidden flex items-center justify-center">
+            <div className="text-center select-none px-8">
+              <div className="text-7xl mb-4">🎨</div>
+              <p className="text-xl font-bold text-primary mb-2">Votre touline unique</p>
+              <p className="text-sm text-gray-500">Taille, couleurs, matériaux... vous choisissez tout !</p>
             </div>
-          )}
-
-          {/* Main image */}
-          <div
-            className="absolute inset-0 flex items-center justify-center p-8 cursor-zoom-in"
-            onClick={() => !imageError && setLightboxOpen(true)}
-            role="button"
-            tabIndex={0}
-            aria-label={`Agrandir l'image de ${category.name}`}
-            onKeyDown={(e) => { if (e.key === 'Enter') !imageError && setLightboxOpen(true); }}
-          >
-            {imageError ? (
-              <div className="flex flex-col items-center text-gray-400 space-y-3 select-none">
-                <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
-                  </svg>
-                </div>
-                <div className="text-center">
-                  <p className="text-sm font-medium text-gray-500">Image bientôt disponible</p>
-                  <p className="text-xs text-gray-400 mt-1">Contactez-nous pour en savoir plus</p>
-                </div>
-              </div>
-            ) : (
-              <img
-                ref={imgRef}
-                key={fadeKey}
-                src={category.images[activeImageIndex]}
-                alt={`${category.name} - Exemple ${activeImageIndex + 1}`}
-                loading="lazy"
-                width="400"
-                height="400"
-                decoding="async"
-                className={`max-w-full max-h-full object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-500 animate-[fadeIn_0.35s_ease] ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
-                onLoad={() => { setImageLoading(false); setImageError(false); }}
-                onError={() => { setImageError(true); setImageLoading(false); }}
-              />
-            )}
-          </div>
-
-          {/* Prev/Next arrows on hover */}
-          {hasMultipleImages && !imageError && (
-            <>
-              <button
-                onClick={() => handleImageChange((activeImageIndex - 1 + category.images.length) % category.images.length)}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity"
-                aria-label="Image précédente"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
-              </button>
-              <button
-                onClick={() => handleImageChange((activeImageIndex + 1) % category.images.length)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity"
-                aria-label="Image suivante"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-              </button>
-            </>
-          )}
-
-          {/* Dots indicator */}
-          {hasMultipleImages && (
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-              {category.images.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleImageChange(idx)}
-                  aria-label={`Image ${idx + 1}`}
-                  className={`rounded-full transition-all duration-200 ${
-                    activeImageIndex === idx
-                      ? 'w-6 h-2 bg-primary'
-                      : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Badges */}
-          <div className="absolute top-3 left-3 flex flex-col gap-2">
             {isNew && (
-              <span className="bg-coral text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+              <span className="absolute top-3 left-3 bg-coral text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                 Nouveau
               </span>
             )}
-            {material && (
-              <span className="bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-medium px-3 py-1 rounded-full shadow-sm">
-                {material}
-              </span>
+          </div>
+        ) : (
+          <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-cream/50 overflow-hidden">
+            {/* Skeleton */}
+            {imageLoading && !imageError && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-2/3 h-2/3 rounded-2xl bg-gray-100 animate-pulse" />
+              </div>
+            )}
+
+            {/* Main image */}
+            <div
+              className="absolute inset-0 flex items-center justify-center p-8 cursor-zoom-in"
+              onClick={() => !imageError && setLightboxOpen(true)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Agrandir l'image de ${category.name}`}
+              onKeyDown={(e) => { if (e.key === 'Enter') !imageError && setLightboxOpen(true); }}
+            >
+              {imageError ? (
+                <div className="flex flex-col items-center text-gray-400 space-y-3 select-none">
+                  <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
+                    </svg>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm font-medium text-gray-500">Image bientôt disponible</p>
+                    <p className="text-xs text-gray-400 mt-1">Contactez-nous pour en savoir plus</p>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  ref={imgRef}
+                  key={fadeKey}
+                  src={category.images[activeImageIndex]}
+                  alt={`${category.name} - Exemple ${activeImageIndex + 1}`}
+                  loading="lazy"
+                  width="400"
+                  height="400"
+                  decoding="async"
+                  className={`max-w-full max-h-full object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-500 animate-[fadeIn_0.35s_ease] ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
+                  onLoad={() => { setImageLoading(false); setImageError(false); }}
+                  onError={() => { setImageError(true); setImageLoading(false); }}
+                />
+              )}
+            </div>
+
+            {/* Prev/Next arrows on hover */}
+            {hasMultipleImages && !imageError && (
+              <>
+                <button
+                  onClick={() => handleImageChange((activeImageIndex - 1 + category.images.length) % category.images.length)}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-label="Image précédente"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <button
+                  onClick={() => handleImageChange((activeImageIndex + 1) % category.images.length)}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-label="Image suivante"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </button>
+              </>
+            )}
+
+            {/* Dots indicator */}
+            {hasMultipleImages && (
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {category.images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleImageChange(idx)}
+                    aria-label={`Image ${idx + 1}`}
+                    className={`rounded-full transition-all duration-200 ${
+                      activeImageIndex === idx
+                        ? 'w-6 h-2 bg-primary'
+                        : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Badges */}
+            <div className="absolute top-3 left-3 flex flex-col gap-2">
+              {isNew && (
+                <span className="bg-coral text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  Nouveau
+                </span>
+              )}
+              {material && (
+                <span className="bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-medium px-3 py-1 rounded-full shadow-sm">
+                  {material}
+                </span>
+              )}
+            </div>
+
+            {/* Zoom icon on hover */}
+            {!imageError && (
+              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 shadow-sm flex items-center justify-center text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                </svg>
+              </div>
             )}
           </div>
-
-          {/* Zoom icon on hover */}
-          {!imageError && (
-            <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 shadow-sm flex items-center justify-center text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
-              </svg>
-            </div>
-          )}
-        </div>
+        )}
 
         {/* Content */}
         <div className="p-5 flex flex-col flex-1">
@@ -196,7 +211,7 @@ const ProductCard = ({ category, isNew, index }) => {
       </div>
 
       {/* Lightbox */}
-      {lightboxOpen && (
+      {lightboxOpen && !isSurMesure && (
         <div
           className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 animate-[fadeIn_0.2s_ease]"
           onClick={() => setLightboxOpen(false)}
