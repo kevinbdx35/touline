@@ -1,0 +1,97 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<nav class="fixed w-full bg-white shadow-md z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex-shrink-0 flex items-center">
+        <a href={base} class="text-2xl font-bold text-blue-600">Touline & Co</a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8">
+        <a href={`${base}#accueil`} class="text-gray-700 hover:text-blue-600 transition">
+          Accueil
+        </a>
+        <a href={`${base}#produits`} class="text-gray-700 hover:text-blue-600 transition">
+          Produits
+        </a>
+        <a href={`${base}#savoir-faire`} class="text-gray-700 hover:text-blue-600 transition">
+          Savoir-faire
+        </a>
+        <a href={`${base}#contact`} class="text-gray-700 hover:text-blue-600 transition">
+          Contact
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button
+          id="mobile-menu-btn"
+          class="text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-2"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path id="menu-icon-open" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path id="menu-icon-close" d="M6 18L18 6M6 6l12 12" class="hidden"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a href={`${base}#accueil`} class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md">
+        Accueil
+      </a>
+      <a href={`${base}#produits`} class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md">
+        Produits
+      </a>
+      <a href={`${base}#savoir-faire`} class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md">
+        Savoir-faire
+      </a>
+      <a href={`${base}#contact`} class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md">
+        Contact
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function initNavbar() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+
+    if (!btn || !menu || !iconOpen || !iconClose) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
+    });
+
+    // Close menu when clicking a mobile nav link
+    menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Ouvrir le menu');
+      });
+    });
+  }
+
+  initNavbar();
+  document.addEventListener('astro:page-load', initNavbar);
+</script>

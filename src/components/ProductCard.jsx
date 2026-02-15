@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { categories } from '../data/products';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const ProductCard = ({ category, isNew, index }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(true);
-  const [ref, isVisible] = useScrollAnimation();
 
   const handleKeyDown = (e, index) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -24,8 +21,8 @@ const ProductCard = ({ category, isNew, index }) => {
 
   return (
     <div
-      ref={ref}
-      className={`bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100 animate-on-scroll ${isVisible ? 'animate-slide-up' : ''}`}
+      className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100 animate-on-scroll"
+      data-animation="animate-slide-up"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Main Image */}
@@ -103,26 +100,26 @@ const ProductCard = ({ category, isNew, index }) => {
             role="group"
             aria-label="Galerie d'exemples de couleurs"
           >
-            {category.images.map((image, index) => (
+            {category.images.map((image, idx) => (
               <button
-                key={index}
+                key={idx}
                 onClick={() => {
-                  setActiveImageIndex(index);
+                  setActiveImageIndex(idx);
                   setImageLoading(true);
                 }}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                aria-label={`Voir l'exemple de couleur ${index + 1} sur ${category.images.length}`}
-                aria-pressed={activeImageIndex === index}
+                onKeyDown={(e) => handleKeyDown(e, idx)}
+                aria-label={`Voir l'exemple de couleur ${idx + 1} sur ${category.images.length}`}
+                aria-pressed={activeImageIndex === idx}
                 tabIndex={0}
                 className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 ${
-                  activeImageIndex === index
+                  activeImageIndex === idx
                     ? 'border-blue-500 ring-2 ring-blue-200 scale-105'
                     : 'border-gray-200 hover:border-blue-300 hover:scale-105'
                 }`}
               >
                 <img
                   src={image}
-                  alt={`${category.name} - Variante couleur ${index + 1}`}
+                  alt={`${category.name} - Variante couleur ${idx + 1}`}
                   loading="lazy"
                   width="64"
                   height="64"
@@ -132,7 +129,7 @@ const ProductCard = ({ category, isNew, index }) => {
                     e.target.style.display = 'none';
                   }}
                 />
-                {activeImageIndex === index && (
+                {activeImageIndex === idx && (
                   <div className="absolute inset-0 bg-blue-500/10" aria-hidden="true"></div>
                 )}
               </button>
@@ -144,34 +141,4 @@ const ProductCard = ({ category, isNew, index }) => {
   );
 };
 
-const Products = () => {
-  return (
-    <section id="produits" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-2">
-            Nos Créations
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-4 sm:mb-6 px-4">
-            Découvrez notre collection de toulines artisanales, chacune confectionnée avec soin et passion
-          </p>
-          <div className="max-w-3xl mx-auto bg-green-50 border border-green-200 rounded-xl p-3 sm:p-4 mx-4">
-            <p className="text-xs sm:text-sm text-green-900 text-left sm:text-center">
-              <span className="font-semibold">✓ Stock permanent :</span> Toutes nos tailles sont disponibles en stock. Les couleurs peuvent varier selon nos arrivages,
-              mais nous pouvons également fabriquer votre touline sur commande avec les couleurs de votre choix.
-            </p>
-          </div>
-        </div>
-
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {categories.map((category, index) => (
-            <ProductCard key={category.id} category={category} isNew={category.isNew} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Products;
+export default ProductCard;

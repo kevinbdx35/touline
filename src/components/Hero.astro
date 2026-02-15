@@ -1,0 +1,57 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section id="accueil" class="relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100">
+  <div class="absolute inset-0 bg-pattern opacity-5"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 sm:mb-6">
+      Touline & Co
+    </h1>
+    <p class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-3 sm:mb-4">
+      L'art de la touline artisanale
+    </p>
+    <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto px-2">
+      Des créations uniques tissées avec passion. Chaque touline est confectionnée à la main selon les traditions maritimes ancestrales.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="#produits"
+        class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+      >
+        Découvrir nos créations
+      </a>
+      <a
+        href="#savoir-faire"
+        class="px-8 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+      >
+        Notre savoir-faire
+      </a>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto px-2">
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold text-blue-600">100%</div>
+        <div class="text-xs sm:text-sm text-gray-600 mt-1">Artisanal</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold text-blue-600">Unique</div>
+        <div class="text-xs sm:text-sm text-gray-600 mt-1">Pièces uniques</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold text-blue-600">Tradition</div>
+        <div class="text-xs sm:text-sm text-gray-600 mt-1">Savoir-faire</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-blue-600" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+      <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>
