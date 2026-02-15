@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const ProductCard = ({ category, isNew, index }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -6,6 +6,14 @@ const ProductCard = ({ category, isNew, index }) => {
   const [imageError, setImageError] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [fadeKey, setFadeKey] = useState(0);
+
+  // Handle image ref to detect already-loaded images (hydration fix)
+  const imgRef = useCallback((node) => {
+    if (node && node.complete && node.naturalHeight > 0) {
+      setImageLoading(false);
+      setImageError(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (!lightboxOpen) return;
@@ -74,6 +82,7 @@ const ProductCard = ({ category, isNew, index }) => {
               </div>
             ) : (
               <img
+                ref={imgRef}
                 key={fadeKey}
                 src={category.images[activeImageIndex]}
                 alt={`${category.name} - Exemple ${activeImageIndex + 1}`}
