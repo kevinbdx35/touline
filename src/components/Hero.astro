@@ -2,48 +2,83 @@
 const base = import.meta.env.BASE_URL;
 ---
 
-<section id="accueil" class="relative h-screen flex items-center justify-center bg-gradient-to-br from-cream via-white to-peach/30">
-  <div class="absolute inset-0 bg-pattern opacity-5"></div>
+<section id="accueil" class="relative min-h-screen flex items-center overflow-hidden">
+  <!-- Parallax background -->
+  <div id="hero-bg" class="absolute inset-0 bg-gradient-to-br from-cream via-white to-peach/30 transition-transform duration-100 will-change-transform"></div>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 sm:mb-6">
-      Touline & Co
-    </h1>
-    <p class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-3 sm:mb-4">
-      L'art de la touline artisanale
-    </p>
-    <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto px-2">
-      Des créations uniques tissées avec passion. Chaque touline est confectionnée à la main selon les traditions maritimes ancestrales.
-    </p>
+  <!-- Decorative floating shapes -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute top-20 left-10 w-32 h-32 bg-peach/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-32 right-16 w-48 h-48 bg-secondary/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-coral/10 rounded-full blur-2xl"></div>
+  </div>
 
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-        href="#produits"
-        class="px-8 py-3 bg-coral text-white rounded-lg hover:bg-coral-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-      >
-        Découvrir nos créations
-      </a>
-      <a
-        href="#savoir-faire"
-        class="px-8 py-3 bg-white text-primary border-2 border-primary rounded-lg hover:bg-cream transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-      >
-        Notre savoir-faire
-      </a>
-    </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <!-- Text content -->
+      <div class="text-center lg:text-left order-2 lg:order-1">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 sm:mb-6">
+          Touline <span class="text-primary">&</span> Co
+        </h1>
+        <p class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-3 sm:mb-4">
+          L'art de la touline artisanale
+        </p>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
+          Des créations uniques tissées avec passion. Chaque touline est confectionnée à la main selon les traditions maritimes ancestrales.
+        </p>
 
-    <!-- Decorative elements -->
-    <div class="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto px-2">
-      <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-primary">100%</div>
-        <div class="text-xs sm:text-sm text-gray-600 mt-1">Artisanal</div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a
+            href="#produits"
+            class="px-8 py-3 bg-coral text-white rounded-lg hover:bg-coral-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center"
+          >
+            Découvrir nos créations
+          </a>
+          <a
+            href="#savoir-faire"
+            class="px-8 py-3 bg-white text-primary border-2 border-primary rounded-lg hover:bg-cream transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center"
+          >
+            Notre savoir-faire
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-10 sm:mt-12 grid grid-cols-3 gap-4 sm:gap-8 max-w-md mx-auto lg:mx-0">
+          <div class="text-center lg:text-left">
+            <div class="text-2xl sm:text-3xl font-bold text-primary">100%</div>
+            <div class="text-xs sm:text-sm text-gray-600 mt-1">Artisanal</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-2xl sm:text-3xl font-bold text-secondary">Unique</div>
+            <div class="text-xs sm:text-sm text-gray-600 mt-1">Pièces uniques</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-2xl sm:text-3xl font-bold text-coral">Tradition</div>
+            <div class="text-xs sm:text-sm text-gray-600 mt-1">Savoir-faire</div>
+          </div>
+        </div>
       </div>
-      <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-secondary">Unique</div>
-        <div class="text-xs sm:text-sm text-gray-600 mt-1">Pièces uniques</div>
-      </div>
-      <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-coral">Tradition</div>
-        <div class="text-xs sm:text-sm text-gray-600 mt-1">Savoir-faire</div>
+
+      <!-- Hero image -->
+      <div class="order-1 lg:order-2 flex justify-center">
+        <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[28rem] lg:h-[28rem]">
+          <!-- Decorative ring -->
+          <div class="absolute inset-0 rounded-full border-4 border-dashed border-peach/50 animate-[spin_30s_linear_infinite]"></div>
+          <!-- Image container -->
+          <div class="absolute inset-4 rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-cream to-peach/30">
+            <img
+              src={`${base}img/monocolor.webp`}
+              alt="Touline artisanale faite main - Touline & Co"
+              class="w-full h-full object-contain p-8 sm:p-10 drop-shadow-xl"
+              width="400"
+              height="400"
+            />
+          </div>
+          <!-- Small floating accent -->
+          <div class="absolute -bottom-2 -right-2 bg-coral text-white w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-lg text-2xl sm:text-3xl">
+            ⚓
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -55,3 +90,23 @@ const base = import.meta.env.BASE_URL;
     </svg>
   </div>
 </section>
+
+<script>
+  function initParallax() {
+    const bg = document.getElementById('hero-bg');
+    if (!bg) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY < window.innerHeight) {
+        bg.style.transform = `translateY(${scrollY * 0.3}px)`;
+      }
+    }, { passive: true });
+  }
+
+  initParallax();
+  document.addEventListener('astro:page-load', initParallax);
+</script>
