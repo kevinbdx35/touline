@@ -23,7 +23,7 @@ const EmailLink = ({ className = '', children }) => {
     <a
       href={`mailto:${email}`}
       className={className}
-      aria-label="Envoyer un email à Touline & Co"
+      aria-label="Envoyer un email à La Touline"
     >
       {children || email}
     </a>

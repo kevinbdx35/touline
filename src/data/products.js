@@ -1,5 +1,5 @@
 /**
- * Product categories data for Touline & Co
+ * Product categories data for La Touline
  */
 export const categories = [
   {
