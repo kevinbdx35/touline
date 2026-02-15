@@ -137,7 +137,7 @@ const ProductCard = ({ category, isNew, index }) => {
                   height="400"
                   decoding="async"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={`max-w-full max-h-full object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-500 animate-[fadeIn_0.35s_ease] ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
+                  className={`max-w-full max-h-full object-contain drop-shadow-lg group-hover:scale-105 transition-all duration-500 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
                   onLoad={() => { setImageLoading(false); setImageError(false); }}
                   onError={() => { setImageError(true); setImageLoading(false); }}
                 />
@@ -229,7 +229,7 @@ const ProductCard = ({ category, isNew, index }) => {
               href="#contact"
               className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
             >
-              {isSurMesure ? 'Devis' : 'Commander'}
+              {isSurMesure ? 'Devis' : 'Nous contacter'}
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
@@ -241,7 +241,7 @@ const ProductCard = ({ category, isNew, index }) => {
       {/* Lightbox */}
       {lightboxOpen && !isSurMesure && (
         <div
-          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 animate-[fadeIn_0.2s_ease]"
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
           onClick={() => setLightboxOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -280,7 +280,7 @@ const ProductCard = ({ category, isNew, index }) => {
             key={`lb-${fadeKey}`}
             src={category.images[activeImageIndex]}
             alt={`${category.name} - Exemple ${activeImageIndex + 1}`}
-            className="max-w-full max-h-[85vh] object-contain animate-[fadeIn_0.3s_ease]"
+            className="max-w-full max-h-[85vh] object-contain"
             sizes="100vw"
             onClick={(e) => e.stopPropagation()}
           />
