@@ -7,11 +7,16 @@ const ProductCard = ({ category, isNew, index }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [fadeKey, setFadeKey] = useState(0);
 
-  // Handle image ref to detect already-loaded images (hydration fix)
+  // Handle image ref to detect already-loaded/errored images (hydration fix)
   const imgRef = useCallback((node) => {
-    if (node && node.complete && node.naturalHeight > 0) {
-      setImageLoading(false);
-      setImageError(false);
+    if (node && node.complete) {
+      if (node.naturalHeight > 0) {
+        setImageLoading(false);
+        setImageError(false);
+      } else {
+        setImageLoading(false);
+        setImageError(true);
+      }
     }
   }, []);
 
