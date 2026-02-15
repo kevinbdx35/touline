@@ -76,7 +76,14 @@ const navLinks = [
 </nav>
 
 <script>
+  let navbarAbort;
+
   function initNavbar() {
+    // Abort previous listeners to avoid duplicates
+    if (navbarAbort) navbarAbort.abort();
+    navbarAbort = new AbortController();
+    const { signal } = navbarAbort;
+
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const iconOpen = document.getElementById('menu-icon-open');
@@ -93,7 +100,7 @@ const navLinks = [
       iconClose.classList.toggle('hidden');
       btn.setAttribute('aria-expanded', String(!isOpen));
       btn.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
-    });
+    }, { signal });
 
     // Close menu when clicking a mobile nav link
     menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
@@ -103,7 +110,7 @@ const navLinks = [
         iconClose.classList.add('hidden');
         btn.setAttribute('aria-expanded', 'false');
         btn.setAttribute('aria-label', 'Ouvrir le menu');
-      });
+      }, { signal });
     });
 
     // Promo banner
@@ -111,19 +118,18 @@ const navLinks = [
     const closePromo = document.getElementById('close-promo');
 
     if (promoBanner && nav) {
-      // Set initial nav offset to match actual banner height
       const updateNavOffset = () => {
         const bannerHeight = promoBanner.getBoundingClientRect().height;
         nav.style.top = `${bannerHeight}px`;
       };
       updateNavOffset();
-      window.addEventListener('resize', updateNavOffset);
+      window.addEventListener('resize', updateNavOffset, { signal });
 
       if (closePromo) {
         closePromo.addEventListener('click', () => {
           promoBanner.style.transform = 'translateY(-100%)';
           nav.style.top = '0';
-        });
+        }, { signal });
       }
     }
 
@@ -137,7 +143,7 @@ const navLinks = [
           nav.classList.replace('shadow-lg', 'shadow-sm');
           nav.classList.replace('bg-white', 'bg-white/95');
         }
-      }, { passive: true });
+      }, { signal, passive: true });
     }
 
     // Active section highlighting
@@ -181,8 +187,8 @@ const navLinks = [
     );
 
     sections.forEach((section) => sectionObserver.observe(section));
+    signal.addEventListener('abort', () => sectionObserver.disconnect());
   }
 
-  initNavbar();
   document.addEventListener('astro:page-load', initNavbar);
 </script>
