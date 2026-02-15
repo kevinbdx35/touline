@@ -26,7 +26,7 @@ const ProductCard = ({ category, isNew, index }) => {
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Main Image */}
-      <div className="relative h-96 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
+      <div className="relative h-96 bg-gradient-to-br from-cream via-white to-peach/20 overflow-hidden">
         {/* Skeleton Loader */}
         {imageLoading && (
           <div className="absolute inset-0 flex items-center justify-center">
@@ -53,7 +53,7 @@ const ProductCard = ({ category, isNew, index }) => {
 
         {/* New Badge */}
         {isNew && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm">
+          <div className="absolute top-4 left-4 bg-gradient-to-r from-coral to-coral-dark text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm">
             ✨ Nouveau
           </div>
         )}
@@ -76,7 +76,7 @@ const ProductCard = ({ category, isNew, index }) => {
             {category.name}
           </h3>
           <div className="text-right flex-shrink-0">
-            <div className="text-2xl sm:text-3xl font-bold text-blue-600 whitespace-nowrap">
+            <div className="text-2xl sm:text-3xl font-bold text-coral whitespace-nowrap">
               {category.price}
             </div>
             <div className="text-xs text-gray-500 mt-1">
@@ -111,10 +111,10 @@ const ProductCard = ({ category, isNew, index }) => {
                 aria-label={`Voir l'exemple de couleur ${idx + 1} sur ${category.images.length}`}
                 aria-pressed={activeImageIndex === idx}
                 tabIndex={0}
-                className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 ${
+                className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 ${
                   activeImageIndex === idx
-                    ? 'border-blue-500 ring-2 ring-blue-200 scale-105'
-                    : 'border-gray-200 hover:border-blue-300 hover:scale-105'
+                    ? 'border-secondary ring-2 ring-peach scale-105'
+                    : 'border-gray-200 hover:border-secondary hover:scale-105'
                 }`}
               >
                 <img
@@ -130,7 +130,7 @@ const ProductCard = ({ category, isNew, index }) => {
                   }}
                 />
                 {activeImageIndex === idx && (
-                  <div className="absolute inset-0 bg-blue-500/10" aria-hidden="true"></div>
+                  <div className="absolute inset-0 bg-secondary/10" aria-hidden="true"></div>
                 )}
               </button>
             ))}

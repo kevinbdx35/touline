@@ -2,7 +2,7 @@
 const base = import.meta.env.BASE_URL;
 ---
 
-<section id="accueil" class="relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100">
+<section id="accueil" class="relative h-screen flex items-center justify-center bg-gradient-to-br from-cream via-white to-peach/30">
   <div class="absolute inset-0 bg-pattern opacity-5"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -19,13 +19,13 @@ const base = import.meta.env.BASE_URL;
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a
         href="#produits"
-        class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+        class="px-8 py-3 bg-coral text-white rounded-lg hover:bg-coral-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
       >
         Découvrir nos créations
       </a>
       <a
         href="#savoir-faire"
-        class="px-8 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+        class="px-8 py-3 bg-white text-primary border-2 border-primary rounded-lg hover:bg-cream transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
       >
         Notre savoir-faire
       </a>
@@ -34,15 +34,15 @@ const base = import.meta.env.BASE_URL;
     <!-- Decorative elements -->
     <div class="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto px-2">
       <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-blue-600">100%</div>
+        <div class="text-2xl sm:text-3xl font-bold text-primary">100%</div>
         <div class="text-xs sm:text-sm text-gray-600 mt-1">Artisanal</div>
       </div>
       <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-blue-600">Unique</div>
+        <div class="text-2xl sm:text-3xl font-bold text-secondary">Unique</div>
         <div class="text-xs sm:text-sm text-gray-600 mt-1">Pièces uniques</div>
       </div>
       <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-blue-600">Tradition</div>
+        <div class="text-2xl sm:text-3xl font-bold text-coral">Tradition</div>
         <div class="text-xs sm:text-sm text-gray-600 mt-1">Savoir-faire</div>
       </div>
     </div>
@@ -50,7 +50,7 @@ const base = import.meta.env.BASE_URL;
 
   <!-- Scroll indicator -->
   <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-blue-600" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+    <svg class="w-6 h-6 text-primary" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
       <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
     </svg>
   </div>
