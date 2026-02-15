@@ -10,10 +10,41 @@ import Footer from '../components/Footer.astro';
 
 <Layout>
   <Navbar />
-  <Hero />
-  <Products />
-  <Craftsmanship />
-  <Contact />
+  <main id="contenu-principal">
+    <Hero />
+    <Products />
+    <Craftsmanship />
+    <Contact />
+  </main>
   <Footer />
+
+  <!-- Back to top button -->
+  <button
+    id="back-to-top"
+    class="back-to-top fixed bottom-6 right-6 z-40 bg-primary hover:bg-primary-dark text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center"
+    aria-label="Retour en haut de la page"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
   <script src="../scripts/scroll-animation.js"></script>
+  <script>
+    function initBackToTop() {
+      const btn = document.getElementById('back-to-top');
+      if (!btn) return;
+
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 500);
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    initBackToTop();
+    document.addEventListener('astro:page-load', initBackToTop);
+  </script>
 </Layout>

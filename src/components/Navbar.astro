@@ -1,8 +1,15 @@
 ---
 const base = import.meta.env.BASE_URL;
+
+const navLinks = [
+  { href: '#accueil', label: 'Accueil' },
+  { href: '#produits', label: 'Produits' },
+  { href: '#savoir-faire', label: 'Savoir-faire' },
+  { href: '#contact', label: 'Contact' },
+];
 ---
 
-<nav class="fixed w-full bg-white/95 backdrop-blur-sm shadow-md z-50">
+<nav id="main-nav" class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-shadow duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div class="flex-shrink-0 flex items-center">
@@ -11,18 +18,16 @@ const base = import.meta.env.BASE_URL;
 
       <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-8">
-        <a href={`${base}#accueil`} class="text-gray-700 hover:text-primary transition">
-          Accueil
-        </a>
-        <a href={`${base}#produits`} class="text-gray-700 hover:text-primary transition">
-          Produits
-        </a>
-        <a href={`${base}#savoir-faire`} class="text-gray-700 hover:text-primary transition">
-          Savoir-faire
-        </a>
-        <a href={`${base}#contact`} class="text-gray-700 hover:text-primary transition">
-          Contact
-        </a>
+        {navLinks.map(({ href, label }) => (
+          <a
+            href={`${base}${href}`}
+            class="nav-link text-gray-700 hover:text-primary transition relative py-1"
+            data-section={href.replace('#', '')}
+          >
+            {label}
+            <span class="nav-indicator absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 transition-transform duration-300 origin-center" />
+          </a>
+        ))}
       </div>
 
       <!-- Mobile menu button -->
@@ -46,18 +51,15 @@ const base = import.meta.env.BASE_URL;
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href={`${base}#accueil`} class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-cream hover:text-primary rounded-md">
-        Accueil
-      </a>
-      <a href={`${base}#produits`} class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-cream hover:text-primary rounded-md">
-        Produits
-      </a>
-      <a href={`${base}#savoir-faire`} class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-cream hover:text-primary rounded-md">
-        Savoir-faire
-      </a>
-      <a href={`${base}#contact`} class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-cream hover:text-primary rounded-md">
-        Contact
-      </a>
+      {navLinks.map(({ href, label }) => (
+        <a
+          href={`${base}${href}`}
+          class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-cream hover:text-primary rounded-md"
+          data-section={href.replace('#', '')}
+        >
+          {label}
+        </a>
+      ))}
     </div>
   </div>
 </nav>
@@ -68,9 +70,11 @@ const base = import.meta.env.BASE_URL;
     const menu = document.getElementById('mobile-menu');
     const iconOpen = document.getElementById('menu-icon-open');
     const iconClose = document.getElementById('menu-icon-close');
+    const nav = document.getElementById('main-nav');
 
     if (!btn || !menu || !iconOpen || !iconClose) return;
 
+    // Mobile menu toggle
     btn.addEventListener('click', () => {
       const isOpen = !menu.classList.contains('hidden');
       menu.classList.toggle('hidden');
@@ -90,6 +94,61 @@ const base = import.meta.env.BASE_URL;
         btn.setAttribute('aria-label', 'Ouvrir le menu');
       });
     });
+
+    // Navbar scroll shadow effect
+    if (nav) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) {
+          nav.classList.replace('shadow-sm', 'shadow-lg');
+          nav.classList.replace('bg-white/95', 'bg-white');
+        } else {
+          nav.classList.replace('shadow-lg', 'shadow-sm');
+          nav.classList.replace('bg-white', 'bg-white/95');
+        }
+      }, { passive: true });
+    }
+
+    // Active section highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    if (sections.length === 0) return;
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+
+            navLinks.forEach((link) => {
+              const indicator = link.querySelector('.nav-indicator');
+              if (link.dataset.section === id) {
+                link.classList.replace('text-gray-700', 'text-primary');
+                if (indicator) indicator.classList.replace('scale-x-0', 'scale-x-100');
+              } else {
+                link.classList.replace('text-primary', 'text-gray-700');
+                if (indicator) indicator.classList.replace('scale-x-100', 'scale-x-0');
+              }
+            });
+
+            mobileLinks.forEach((link) => {
+              if (link.dataset.section === id) {
+                link.classList.add('bg-cream', 'text-primary', 'font-semibold');
+              } else {
+                link.classList.remove('bg-cream', 'text-primary', 'font-semibold');
+              }
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '-80px 0px -50% 0px',
+      }
+    );
+
+    sections.forEach((section) => sectionObserver.observe(section));
   }
 
   initNavbar();
