@@ -118,18 +118,25 @@ const navLinks = [
     const closePromo = document.getElementById('close-promo');
 
     if (promoBanner && nav) {
-      const updateNavOffset = () => {
-        const bannerHeight = promoBanner.getBoundingClientRect().height;
-        nav.style.top = `${bannerHeight}px`;
-      };
-      updateNavOffset();
-      window.addEventListener('resize', updateNavOffset, { signal });
+      // Check if banner was previously closed
+      if (sessionStorage.getItem('promo-closed')) {
+        promoBanner.style.display = 'none';
+        nav.style.top = '0';
+      } else {
+        const updateNavOffset = () => {
+          const bannerHeight = promoBanner.getBoundingClientRect().height;
+          nav.style.top = `${bannerHeight}px`;
+        };
+        updateNavOffset();
+        window.addEventListener('resize', updateNavOffset, { signal });
 
-      if (closePromo) {
-        closePromo.addEventListener('click', () => {
-          promoBanner.style.transform = 'translateY(-100%)';
-          nav.style.top = '0';
-        }, { signal });
+        if (closePromo) {
+          closePromo.addEventListener('click', () => {
+            promoBanner.style.transform = 'translateY(-100%)';
+            nav.style.top = '0';
+            sessionStorage.setItem('promo-closed', '1');
+          }, { signal });
+        }
       }
     }
 

@@ -58,7 +58,7 @@ export const categories = [
     name: 'Touline en Cuir Bicolore',
     description: 'Touline en cuir bicolore, alliance parfaite entre élégance et robustesse.',
     price: '3,50€',
-    isNew: true,
+    isNew: false,
     images: [
       'img/cuir-bicolore-1.webp',
       'img/cuir-bicolore-2.webp',
@@ -70,7 +70,7 @@ export const categories = [
     name: 'Touline en Cuir Tricolore',
     description: 'Touline en cuir tricolore, un accessoire unique alliant raffinement et originalité.',
     price: '4€',
-    isNew: true,
+    isNew: false,
     images: [
       'img/tricolor1.webp',
       'img/tricolor4.webp',
@@ -82,7 +82,7 @@ export const categories = [
     name: 'Touline en Coton Unie',
     description: 'Touline en coton doux et naturel, unie pour un style sobre et écologique.',
     price: '3€',
-    isNew: true,
+    isNew: false,
     images: [
       'img/monocolor15.webp',
       'img/monocolor16.webp',
@@ -94,7 +94,7 @@ export const categories = [
     name: 'Touline en Coton Bicolore',
     description: 'Touline en coton bicolore, douce au toucher et agréable à utiliser au quotidien.',
     price: '3,50€',
-    isNew: true,
+    isNew: false,
     images: [
       'img/coton-bicolore-1.webp',
       'img/coton-bicolore-2.webp',
@@ -106,7 +106,7 @@ export const categories = [
     name: 'Touline en Coton Tricolore',
     description: 'Touline en coton tricolore, colorée et écologique pour un accessoire unique.',
     price: '4€',
-    isNew: true,
+    isNew: false,
     images: [
       'img/tricolor18.webp'
     ]

@@ -107,7 +107,7 @@ const ProductCard = ({ category, isNew, index }) => {
 
             {/* Main image */}
             <div
-              className="absolute inset-0 flex items-center justify-center p-8 cursor-zoom-in"
+              className="absolute inset-0 flex items-center justify-center p-8 cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
               onClick={() => !imageError && setLightboxOpen(true)}
               role="button"
               tabIndex={0}
@@ -136,6 +136,7 @@ const ProductCard = ({ category, isNew, index }) => {
                   width="400"
                   height="400"
                   decoding="async"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className={`max-w-full max-h-full object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-500 animate-[fadeIn_0.35s_ease] ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
                   onLoad={() => { setImageLoading(false); setImageError(false); }}
                   onError={() => { setImageError(true); setImageLoading(false); }}
@@ -148,14 +149,14 @@ const ProductCard = ({ category, isNew, index }) => {
               <>
                 <button
                   onClick={() => handleImageChange((activeImageIndex - 1 + category.images.length) % category.images.length)}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary"
                   aria-label="Image précédente"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
                 </button>
                 <button
                   onClick={() => handleImageChange((activeImageIndex + 1) % category.images.length)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary"
                   aria-label="Image suivante"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
@@ -248,7 +249,7 @@ const ProductCard = ({ category, isNew, index }) => {
         >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 text-white/60 hover:text-white transition p-2"
+            className="absolute top-4 right-4 text-white/60 hover:text-white transition p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
             aria-label="Fermer"
           >
             <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -260,14 +261,14 @@ const ProductCard = ({ category, isNew, index }) => {
             <>
               <button
                 onClick={(e) => { e.stopPropagation(); handleImageChange((activeImageIndex - 1 + category.images.length) % category.images.length); }}
-                className="absolute left-4 text-white/60 hover:text-white transition p-3 rounded-full hover:bg-white/10"
+                className="absolute left-4 text-white/60 hover:text-white transition p-3 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white"
                 aria-label="Image précédente"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); handleImageChange((activeImageIndex + 1) % category.images.length); }}
-                className="absolute right-4 text-white/60 hover:text-white transition p-3 rounded-full hover:bg-white/10"
+                className="absolute right-4 text-white/60 hover:text-white transition p-3 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white"
                 aria-label="Image suivante"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
@@ -280,6 +281,7 @@ const ProductCard = ({ category, isNew, index }) => {
             src={category.images[activeImageIndex]}
             alt={`${category.name} - Exemple ${activeImageIndex + 1}`}
             className="max-w-full max-h-[85vh] object-contain animate-[fadeIn_0.3s_ease]"
+            sizes="100vw"
             onClick={(e) => e.stopPropagation()}
           />
 
