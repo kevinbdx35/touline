@@ -11,16 +11,16 @@ const navLinks = [
 ---
 
 <!-- Promo banner -->
-<div id="promo-banner" class="fixed w-full z-50 bg-gradient-to-r from-coral to-coral-dark text-white text-center text-sm py-2 px-4 transition-all duration-300">
+<div id="promo-banner" class="fixed w-full z-50 bg-gradient-to-r from-coral to-coral-dark text-white text-center text-xs sm:text-sm py-1.5 sm:py-2 px-4 transition-all duration-300">
   <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
     <span>Livraison offerte en France métropolitaine</span>
-    <button id="close-promo" class="ml-2 text-white/70 hover:text-white transition" aria-label="Fermer le bandeau">
+    <button id="close-promo" class="ml-1 sm:ml-2 text-white/70 hover:text-white transition p-1" aria-label="Fermer le bandeau">
       <Icon name="lucide:x" class="w-4 h-4" />
     </button>
   </div>
 </div>
 
-<nav id="main-nav" class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" style="top: 2rem;">
+<nav id="main-nav" class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div class="flex-shrink-0 flex items-center">
@@ -61,11 +61,11 @@ const navLinks = [
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="md:hidden bg-white border-t hidden">
-    <div class="px-2 pt-2 pb-3 space-y-1">
+    <div class="px-3 pt-2 pb-4 space-y-1">
       {navLinks.map(({ href, label }) => (
         <a
           href={`${base}${href}`}
-          class="mobile-nav-link block w-full text-left px-3 py-2 text-gray-700 hover:bg-cream hover:text-primary rounded-md"
+          class="mobile-nav-link block w-full text-left px-4 py-3 text-base text-gray-700 hover:bg-cream hover:text-primary rounded-lg transition-colors"
           data-section={href.replace('#', '')}
         >
           {label}
@@ -110,11 +110,21 @@ const navLinks = [
     const promoBanner = document.getElementById('promo-banner');
     const closePromo = document.getElementById('close-promo');
 
-    if (closePromo && promoBanner && nav) {
-      closePromo.addEventListener('click', () => {
-        promoBanner.style.transform = 'translateY(-100%)';
-        nav.style.top = '0';
-      });
+    if (promoBanner && nav) {
+      // Set initial nav offset to match actual banner height
+      const updateNavOffset = () => {
+        const bannerHeight = promoBanner.getBoundingClientRect().height;
+        nav.style.top = `${bannerHeight}px`;
+      };
+      updateNavOffset();
+      window.addEventListener('resize', updateNavOffset);
+
+      if (closePromo) {
+        closePromo.addEventListener('click', () => {
+          promoBanner.style.transform = 'translateY(-100%)';
+          nav.style.top = '0';
+        });
+      }
     }
 
     // Navbar scroll shadow effect

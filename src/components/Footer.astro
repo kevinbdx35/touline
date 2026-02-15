@@ -3,13 +3,13 @@ const currentYear = new Date().getFullYear();
 const base = import.meta.env.BASE_URL;
 ---
 
-<footer class="bg-gray-900 text-white py-12">
+<footer class="bg-gray-900 text-white py-8 sm:py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-8">
       <!-- About -->
-      <div>
-        <h3 class="text-2xl font-bold mb-4">Touline & Co</h3>
-        <p class="text-gray-400">
+      <div class="col-span-2 md:col-span-1">
+        <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Touline & Co</h3>
+        <p class="text-sm sm:text-base text-gray-400">
           Artisan créateur de toulines marines depuis plus de 10 ans.
           Chaque pièce est unique et fabriquée à la main en Bretagne avec passion.
         </p>
@@ -17,25 +17,25 @@ const base = import.meta.env.BASE_URL;
 
       <!-- Quick Links -->
       <div>
-        <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>
-        <ul class="space-y-2">
+        <h4 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Liens rapides</h4>
+        <ul class="space-y-2 sm:space-y-2">
           <li>
-            <a href={`${base}#accueil`} class="text-gray-400 hover:text-peach transition">
+            <a href={`${base}#accueil`} class="text-sm sm:text-base text-gray-400 hover:text-peach transition py-1 inline-block">
               Accueil
             </a>
           </li>
           <li>
-            <a href={`${base}#produits`} class="text-gray-400 hover:text-peach transition">
+            <a href={`${base}#produits`} class="text-sm sm:text-base text-gray-400 hover:text-peach transition py-1 inline-block">
               Produits
             </a>
           </li>
           <li>
-            <a href={`${base}#savoir-faire`} class="text-gray-400 hover:text-peach transition">
+            <a href={`${base}#savoir-faire`} class="text-sm sm:text-base text-gray-400 hover:text-peach transition py-1 inline-block">
               Savoir-faire
             </a>
           </li>
           <li>
-            <a href={`${base}#contact`} class="text-gray-400 hover:text-peach transition">
+            <a href={`${base}#contact`} class="text-sm sm:text-base text-gray-400 hover:text-peach transition py-1 inline-block">
               Contact
             </a>
           </li>
@@ -44,25 +44,25 @@ const base = import.meta.env.BASE_URL;
 
       <!-- Legal -->
       <div>
-        <h4 class="text-lg font-semibold mb-4">Informations légales</h4>
-        <ul class="space-y-2">
+        <h4 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Informations légales</h4>
+        <ul class="space-y-2 sm:space-y-2">
           <li>
-            <a href={`${base}mentions-legales/`} class="text-gray-400 hover:text-peach transition">
+            <a href={`${base}mentions-legales/`} class="text-sm sm:text-base text-gray-400 hover:text-peach transition py-1 inline-block">
               Mentions légales
             </a>
           </li>
           <li>
-            <a href={`${base}cgv/`} class="text-gray-400 hover:text-peach transition">
+            <a href={`${base}cgv/`} class="text-sm sm:text-base text-gray-400 hover:text-peach transition py-1 inline-block">
               CGV
             </a>
           </li>
           <li>
-            <a href={`${base}politique-confidentialite/`} class="text-gray-400 hover:text-peach transition">
+            <a href={`${base}politique-confidentialite/`} class="text-sm sm:text-base text-gray-400 hover:text-peach transition py-1 inline-block">
               Politique de confidentialité
             </a>
           </li>
           <li>
-            <a href={`${base}livraison-retours/`} class="text-gray-400 hover:text-peach transition">
+            <a href={`${base}livraison-retours/`} class="text-sm sm:text-base text-gray-400 hover:text-peach transition py-1 inline-block">
               Livraison & Retours
             </a>
           </li>
@@ -70,8 +70,8 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
 
-    <div class="border-t border-gray-800 pt-8 text-center">
-      <p class="text-gray-400">
+    <div class="border-t border-gray-800 pt-6 sm:pt-8 text-center">
+      <p class="text-sm sm:text-base text-gray-400">
         &copy; {currentYear} Touline & Co. Tous droits réservés. Fait avec passion ⚓
       </p>
     </div>

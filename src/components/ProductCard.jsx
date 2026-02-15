@@ -37,6 +37,26 @@ const ProductCard = ({ category, isNew, index }) => {
     setFadeKey((k) => k + 1);
   };
 
+  // Touch swipe support
+  const [touchStart, setTouchStart] = useState(null);
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStart === null) return;
+    const diff = touchStart - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        handleImageChange((activeImageIndex + 1) % category.images.length);
+      } else {
+        handleImageChange((activeImageIndex - 1 + category.images.length) % category.images.length);
+      }
+    }
+    setTouchStart(null);
+  };
+
   const isSurMesure = category.name.includes('Sur-Mesure');
   const hasMultipleImages = category.images.length > 1;
 
@@ -57,7 +77,7 @@ const ProductCard = ({ category, isNew, index }) => {
       >
         {/* Image area */}
         {isSurMesure ? (
-          <div className="relative aspect-square bg-gradient-to-br from-primary/10 via-secondary/5 to-peach/20 overflow-hidden flex items-center justify-center">
+          <div className="relative aspect-[4/3] sm:aspect-square bg-gradient-to-br from-primary/10 via-secondary/5 to-peach/20 overflow-hidden flex items-center justify-center">
             <div className="text-center select-none px-8">
               <div className="text-7xl mb-4">🎨</div>
               <p className="text-xl font-bold text-primary mb-2">Votre touline unique</p>
@@ -70,7 +90,11 @@ const ProductCard = ({ category, isNew, index }) => {
             )}
           </div>
         ) : (
-          <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-cream/50 overflow-hidden">
+          <div
+            className="relative aspect-[4/3] sm:aspect-square bg-gradient-to-br from-gray-50 to-cream/50 overflow-hidden"
+            onTouchStart={hasMultipleImages ? handleTouchStart : undefined}
+            onTouchEnd={hasMultipleImages ? handleTouchEnd : undefined}
+          >
             {/* Skeleton */}
             {imageLoading && !imageError && (
               <div className="absolute inset-0 flex items-center justify-center">
@@ -121,14 +145,14 @@ const ProductCard = ({ category, isNew, index }) => {
               <>
                 <button
                   onClick={() => handleImageChange((activeImageIndex - 1 + category.images.length) % category.images.length)}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                   aria-label="Image précédente"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
                 </button>
                 <button
                   onClick={() => handleImageChange((activeImageIndex + 1) % category.images.length)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:bg-white hover:text-gray-900 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                   aria-label="Image suivante"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
