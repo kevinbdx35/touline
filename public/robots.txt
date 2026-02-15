@@ -1,6 +1,0 @@
-# Robots.txt pour Touline & Co
-
-User-agent: *
-Allow: /
-
-Sitemap: https://kevinbdx35.github.io/touline/sitemap-index.xml

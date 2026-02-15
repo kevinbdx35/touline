@@ -11,7 +11,12 @@
   "dependencies": {
     "@astrojs/react": "^4.2.1",
     "@astrojs/sitemap": "^3.7.0",
+    "@iconify-json/lucide": "^1.2.90",
+    "@playform/compress": "^0.2.1",
     "astro": "^5.5.5",
+    "astro-compressor": "^1.2.0",
+    "astro-icon": "^1.1.5",
+    "astro-robots-txt": "^1.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
