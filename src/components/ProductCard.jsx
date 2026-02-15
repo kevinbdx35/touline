@@ -3,6 +3,7 @@ import { useState } from 'react';
 const ProductCard = ({ category, isNew, index }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   const handleKeyDown = (e, index) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -35,20 +36,26 @@ const ProductCard = ({ category, isNew, index }) => {
         )}
 
         <div className="absolute inset-0 flex items-center justify-center p-6">
-          <img
-            src={category.images[activeImageIndex]}
-            alt={`${category.name} - Exemple ${activeImageIndex + 1} - Touline artisanale faite main`}
-            loading="lazy"
-            width="400"
-            height="400"
-            decoding="async"
-            className={`max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
-            onLoad={() => setImageLoading(false)}
-            onError={(e) => {
-              e.target.style.display = 'none';
-              setImageLoading(false);
-            }}
-          />
+          {imageError ? (
+            <div className="flex flex-col items-center justify-center text-gray-400 space-y-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
+              </svg>
+              <span className="text-sm font-medium">Photo bientot disponible</span>
+            </div>
+          ) : (
+            <img
+              src={category.images[activeImageIndex]}
+              alt={`${category.name} - Exemple ${activeImageIndex + 1} - Touline artisanale faite main`}
+              loading="lazy"
+              width="400"
+              height="400"
+              decoding="async"
+              className={`max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
+              onLoad={() => { setImageLoading(false); setImageError(false); }}
+              onError={() => { setImageError(true); setImageLoading(false); }}
+            />
+          )}
         </div>
 
         {/* New Badge */}
@@ -106,6 +113,7 @@ const ProductCard = ({ category, isNew, index }) => {
                 onClick={() => {
                   setActiveImageIndex(idx);
                   setImageLoading(true);
+                  setImageError(false);
                 }}
                 onKeyDown={(e) => handleKeyDown(e, idx)}
                 aria-label={`Voir l'exemple de couleur ${idx + 1} sur ${category.images.length}`}
@@ -127,6 +135,7 @@ const ProductCard = ({ category, isNew, index }) => {
                   className="w-full h-full object-contain bg-gradient-to-br from-gray-50 to-white p-2"
                   onError={(e) => {
                     e.target.style.display = 'none';
+                    e.target.parentElement.classList.add('bg-gray-100');
                   }}
                 />
                 {activeImageIndex === idx && (

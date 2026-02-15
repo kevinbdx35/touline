@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://kevinbdx35.github.io',
   base: '/touline/',
+  prefetch: true,
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
